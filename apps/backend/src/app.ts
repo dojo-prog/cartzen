@@ -1,6 +1,9 @@
 import express from "express";
+import cors from "cors";
 import errorMiddleware from "./middlewares/error.middleware";
 import cookieParser from "cookie-parser";
+
+import { generalLimiter } from "./middlewares/rate.limit.middlewares";
 
 import authRouter from "./routers/auth.routes";
 import addressRouter from "./routers/address.routes";
@@ -13,9 +16,17 @@ import inventoryRouter from "./routers/inventory.routes";
 import cartItemRouter from "./routers/cart_item.routes";
 import orderRouter from "./routers/order.routes";
 import paymentRouter from "./routers/payment.routes";
-import { generalLimiter } from "./middlewares/rate.limit.middlewares";
+import ENV from "./config/env";
 
 const app = express();
+
+// Cors Config
+app.use(
+  cors({
+    origin: ENV.CLIENT_URL,
+    credentials: true,
+  }),
+);
 
 // Parsers
 app.use(express.json({ limit: "1mb" }));
