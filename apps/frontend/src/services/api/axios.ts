@@ -1,6 +1,11 @@
+import axios, { type InternalAxiosRequestConfig } from "axios";
+
 import { env } from "@/config/env";
 import { ApiError } from "./errors";
-import axios from "axios";
+
+type RetryableRequestConfig = InternalAxiosRequestConfig & {
+  _retry?: boolean;
+};
 
 const api = axios.create({
   baseURL: env.apiUrl,
@@ -8,24 +13,45 @@ const api = axios.create({
   timeout: 10_000,
 });
 
+const refreshApi = axios.create({
+  baseURL: env.apiUrl,
+  withCredentials: true,
+  timeout: 10_000,
+});
+
 api.interceptors.response.use(
   (response) => response,
-  (error) => {
-    if (axios.isAxiosError(error)) {
-      const response = error.response;
 
-      return Promise.reject(
-        new ApiError(
-          response?.data?.message ?? "Something went wrong",
-          response?.status,
-          response?.data?.code,
-          response?.data,
-        ),
-      );
+  async (error) => {
+    if (!axios.isAxiosError(error)) {
+      return Promise.reject(error);
     }
 
-    return Promise.reject(error);
+    const config = error.config as RetryableRequestConfig | undefined;
+
+    if (error.response?.status === 401 && config && !config._retry) {
+      config._retry = true;
+
+      await refreshAccessToken();
+
+      return api(config);
+    }
+
+    const response = error.response;
+
+    return Promise.reject(
+      new ApiError(
+        response?.data?.message ?? "Something went wrong",
+        response?.status,
+        response?.data?.code,
+        response?.data,
+      ),
+    );
   },
 );
+
+export const refreshAccessToken = async () => {
+  await refreshApi.post("/v1/auth/refresh");
+};
 
 export { api };
