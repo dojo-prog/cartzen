@@ -26,7 +26,7 @@ import {
 
 const router = express.Router();
 
-router.route("/:categorySlug/subcategory").get(
+router.route("/:categorySlug/subcategories").get(
   readLimiter,
   validate({
     params: CategorySlugParamsSchema,
@@ -36,7 +36,7 @@ router.route("/:categorySlug/subcategory").get(
 );
 
 router.post(
-  "/:categoryId/subcategory",
+  "/:categoryId/subcategories",
   writeLimiter,
   protectRoute,
   authorizeRoles(["admin"]),
@@ -48,7 +48,7 @@ router.post(
 );
 
 router.get(
-  "/:categorySlug/subcategory/:subcategorySlug",
+  "/:categorySlug/subcategories/:subcategorySlug",
   readLimiter,
   validate({
     params: CategorySlugParamsSchema.merge(SubcategorySlugParamsSchema),
@@ -57,7 +57,7 @@ router.get(
 );
 
 router
-  .route("/:categoryId/subcategory/:subcategoryId")
+  .route("/:categoryId/subcategories/:subcategoryId")
   .patch(
     writeLimiter,
     protectRoute,
