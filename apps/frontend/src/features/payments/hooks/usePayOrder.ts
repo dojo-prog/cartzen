@@ -3,7 +3,7 @@ import {
   useQueryClient,
   type InfiniteData,
 } from "@tanstack/react-query";
-import { payOrder } from "../payment.api";
+import { payOrder } from "../api/payment.api";
 import type { PaginatedResult } from "@/types/common";
 import type { OrderWithItems } from "@cartzen/shared";
 import { toast } from "sonner";

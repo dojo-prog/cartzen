@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getPaymentByOrder } from "../payment.api";
+import { getPaymentByOrder } from "../api/payment.api";
 
 export const usePaymentByOrder = (orderId?: string) => {
   return useQuery({
