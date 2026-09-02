@@ -1,33 +1,29 @@
+import type { UpdateInventoryBody } from "@cartzen/shared";
 import {
   useMutation,
   useQueryClient,
   type InfiniteData,
 } from "@tanstack/react-query";
-import { updateProduct } from "../api/product.api";
-import type { ProductWithRelations, UpdateProductBody } from "@cartzen/shared";
-import type { PaginatedResult } from "@/types/common";
+import { updateProductInventory } from "../api/inventory.api";
+import type { ProductsPage } from "@/features/products/hooks/useUpdateProduct";
 import { toast } from "sonner";
 import { handleApiError } from "@/utils/handleApiError";
 
-type UpdateProductVariables = {
+type UpdateProductInventoryVariables = {
   productId: string;
-  body: UpdateProductBody;
+  body: UpdateInventoryBody;
 };
 
-export type ProductsPage = PaginatedResult<"products", ProductWithRelations>;
-
-export const useUpdateProduct = () => {
+export const useUpdateProductInventory = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({ productId, body }: UpdateProductVariables) =>
-      updateProduct(productId, body),
+    mutationFn: ({ productId, body }: UpdateProductInventoryVariables) =>
+      updateProductInventory(productId, body),
 
-    onSuccess: (updated) => {
+    onSuccess: (updatedProduct) => {
       queryClient.setQueriesData<InfiniteData<ProductsPage>>(
-        {
-          queryKey: ["products"],
-        },
+        { queryKey: ["products"] },
         (old) => {
           if (!old) return old;
 
@@ -36,14 +32,14 @@ export const useUpdateProduct = () => {
             pages: old.pages.map((page) => ({
               ...page,
               products: page.products.map((p) =>
-                p.id === updated.id ? updated : p,
+                p.id === updatedProduct.id ? updatedProduct : p,
               ),
             })),
           };
         },
       );
 
-      toast.success("Updated product");
+      toast.success("Updated product inventory counts");
     },
 
     onError: (error) => {
