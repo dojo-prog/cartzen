@@ -3,12 +3,28 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import type { ProductWithRelations } from "@cartzen/shared";
 import { formatPrice } from "@/utils/formatPrice";
+import { useAddToCart } from "@/features/carts/hooks/useAddToCart";
+import ButtonLoading from "@/components/common/ButtonLoading";
+import { useCurrentUser } from "@/features/auth/hooks/useCurrentUser";
+import { toast } from "sonner";
 
 interface ProductCardProps {
   product: ProductWithRelations;
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
+  const { data: user } = useCurrentUser();
+  const { mutate, isPending } = useAddToCart();
+
+  const handleAddToCart = (productId: string, quantity: number) => {
+    if (!user) {
+      toast.info("Please login to be able to add to cart");
+      return;
+    }
+
+    mutate({ product_id: productId, quantity });
+  };
+
   const isOutOfStock = product.stock_quantity <= 0;
 
   return (
@@ -66,11 +82,13 @@ const ProductCard = ({ product }: ProductCardProps) => {
         <Button
           className="h-9 w-full text-sm"
           disabled={isOutOfStock}
-          onClick={(event) => {
-            event.stopPropagation();
-          }}
+          onClick={() => handleAddToCart(product.id, 1)}
         >
-          {isOutOfStock ? "Out of stock" : "Add to cart"}
+          {isOutOfStock ? (
+            "Out of stock"
+          ) : (
+            <ButtonLoading btnTitle="Add to cart" isLoading={isPending} />
+          )}
         </Button>
       </CardFooter>
     </Card>
