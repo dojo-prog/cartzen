@@ -1,6 +1,7 @@
 import { CartItemWithRelations } from "@cartzen/shared";
 import AppError from "../utils/AppError";
 import {
+  AddToCartData,
   AddToCartParams,
   getCartItemCountParams,
   GetCartItemParams,
@@ -85,11 +86,13 @@ export const addToCart = async (
 
   checkQuantity(product.stock_quantity, quantity);
 
-  const data = {
-    ...payload,
+  const data: AddToCartData = {
     product_id: productId,
     cart_id: cart.id,
+    quantity: payload.quantity,
   };
+
+  console.log(data);
 
   return await cartItemRepository.add(userId, data);
 };
