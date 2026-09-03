@@ -18,9 +18,11 @@ import {
   type RegisterInput,
 } from "@cartzen/shared";
 import { useRegister } from "../hooks/useRegister";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignupForm = () => {
+  const navigate = useNavigate();
+
   const form = useForm<RegisterInput>({
     resolver: zodResolver(RegisterBodySchema),
 
@@ -32,10 +34,11 @@ const SignupForm = () => {
     },
   });
 
-  const { mutate: register, isPending } = useRegister();
+  const { mutateAsync: register, isPending } = useRegister();
 
-  const onSubmit = (data: RegisterBody) => {
-    register(data);
+  const onSubmit = async (data: RegisterBody) => {
+    await register(data);
+    navigate("/");
   };
 
   return (
