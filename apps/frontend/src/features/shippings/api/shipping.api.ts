@@ -5,6 +5,12 @@ import type {
   UpdateShippingBody,
 } from "@cartzen/shared";
 
+export const getShippingDetails = async (): Promise<Shipping> => {
+  const { data } = await api.get("/v1/shipping");
+
+  return data.data.shipping;
+};
+
 export const createShipping = async (
   body: CreateShippingBody,
 ): Promise<Shipping> => {
