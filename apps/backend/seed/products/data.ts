@@ -5,6 +5,7 @@ interface MockProduct {
   price_cents: number;
   weight_grams: number;
   initial_quantity: number;
+  is_featured: boolean;
 }
 
 const mockProducts: MockProduct[] = [
@@ -16,6 +17,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 18900,
     weight_grams: 1000,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: true,
   },
   {
     name: "Fresh Carrots",
@@ -25,6 +27,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 7900,
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
   {
     name: "Fresh Spinach",
@@ -34,6 +37,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 6500,
     weight_grams: 250,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: true,
   },
   {
     name: "Fresh Button Mushrooms",
@@ -42,6 +46,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 14900,
     weight_grams: 250,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
 
   // Meat & Poultry
@@ -53,6 +58,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 69900,
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: true,
   },
   {
     name: "Pork Liempo",
@@ -61,6 +67,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 45900,
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
   {
     name: "Fresh Chicken Breast",
@@ -70,6 +77,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 32900,
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: true,
   },
   {
     name: "Beef Hotdog",
@@ -79,6 +87,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 15900,
     weight_grams: 400,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
 
   // Seafood
@@ -89,6 +98,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 29900,
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: true,
   },
   {
     name: "Fresh Shrimp",
@@ -98,6 +108,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 54900,
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
   {
     name: "Frozen Salmon Fillet",
@@ -106,6 +117,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 79900,
     weight_grams: 250,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: true,
   },
 
   // Dairy & Eggs
@@ -116,6 +128,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 11900,
     weight_grams: 1000,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
   {
     name: "Cheddar Cheese Block",
@@ -125,6 +138,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 21900,
     weight_grams: 200,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: true,
   },
   {
     name: "Plain Greek Yogurt",
@@ -134,6 +148,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 16900,
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
   {
     name: "Premium Brown Eggs",
@@ -142,6 +157,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 12900,
     weight_grams: 600,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: true,
   },
 
   // Bakery
@@ -152,6 +168,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 8900,
     weight_grams: 400,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
   {
     name: "Butter Croissant",
@@ -160,6 +177,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 7900,
     weight_grams: 80,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: true,
   },
   {
     name: "Chocolate Fudge Cake",
@@ -168,6 +186,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 59900,
     weight_grams: 800,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: true,
   },
 
   // Canned & Packaged Foods
@@ -178,6 +197,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 9990,
     weight_grams: 175,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
   {
     name: "Canned Tuna Flakes",
@@ -187,6 +207,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 8900,
     weight_grams: 180,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: true,
   },
   {
     name: "Instant Chicken Noodles",
@@ -195,6 +216,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 1590,
     weight_grams: 60,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
   {
     name: "Macaroni Pasta Pack",
@@ -204,6 +226,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 8900,
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
 
   // Rice, Grains & Pasta
@@ -215,6 +238,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 32900,
     weight_grams: 5000,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: true,
   },
   {
     name: "Spaghetti Pasta",
@@ -224,6 +248,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 10900,
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
   {
     name: "Instant Ramen Noodles",
@@ -233,6 +258,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 6900,
     weight_grams: 400,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
   {
     name: "Rolled Oats",
@@ -242,6 +268,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 14900,
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
 
   // Snacks
@@ -253,6 +280,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 9900,
     weight_grams: 150,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: true,
   },
   {
     name: "Butter Biscuits",
@@ -262,6 +290,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 7900,
     weight_grams: 200,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
   {
     name: "Milk Chocolate Bar",
@@ -270,6 +299,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 8900,
     weight_grams: 100,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: true,
   },
   {
     name: "Assorted Fruit Candies",
@@ -279,6 +309,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 5900,
     weight_grams: 150,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
 
   // Beverages
@@ -290,6 +321,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 6900,
     weight_grams: 1500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
   {
     name: "Fresh Orange Juice",
@@ -299,6 +331,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 12900,
     weight_grams: 1000,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: true,
   },
   {
     name: "Purified Drinking Water",
@@ -307,6 +340,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 3500,
     weight_grams: 1500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
   {
     name: "Electrolyte Sports Drink",
@@ -316,6 +350,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 8900,
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
 
   // Coffee & Tea
@@ -327,6 +362,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 24900,
     weight_grams: 250,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: true,
   },
   {
     name: "Earl Grey Tea Bags",
@@ -335,6 +371,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 17900,
     weight_grams: 40,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
   {
     name: "Creamy Hot Chocolate Mix",
@@ -343,6 +380,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 15900,
     weight_grams: 300,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
 
   // Condiments & Sauces
@@ -353,6 +391,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 9900,
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
   {
     name: "Creamy Mayonnaise",
@@ -362,6 +401,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 14900,
     weight_grams: 470,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
   {
     name: "Premium Soy Sauce",
@@ -371,6 +411,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 7900,
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
   {
     name: "Cane Vinegar",
@@ -380,6 +421,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 5900,
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
 
   // Cooking Essentials
@@ -391,6 +433,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 19900,
     weight_grams: 1000,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
   {
     name: "Fine Iodized Salt",
@@ -399,6 +442,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 3900,
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
   {
     name: "All-Purpose Flour",
@@ -407,6 +451,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 8900,
     weight_grams: 1000,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
   {
     name: "Ground Black Pepper",
@@ -416,6 +461,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 9900,
     weight_grams: 100,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
 
   // Frozen Foods
@@ -427,6 +473,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 12900,
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
   {
     name: "Frozen Chicken Nuggets",
@@ -436,6 +483,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 22900,
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
   {
     name: "Vanilla Ice Cream",
@@ -444,6 +492,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 29900,
     weight_grams: 1000,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
   {
     name: "Frozen Beef Lasagna",
@@ -453,6 +502,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 24900,
     weight_grams: 400,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
 
   // Breakfast Foods
@@ -463,6 +513,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 19900,
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
   {
     name: "Instant Oatmeal",
@@ -471,6 +522,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 13900,
     weight_grams: 400,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
   {
     name: "Creamy Peanut Butter",
@@ -480,6 +532,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 17900,
     weight_grams: 340,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
 
   // Personal Care
@@ -491,6 +544,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 19900,
     weight_grams: 400,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
   {
     name: "Moisturizing Body Wash",
@@ -500,6 +554,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 15900,
     weight_grams: 400,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
   {
     name: "Mint Toothpaste",
@@ -508,6 +563,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 8900,
     weight_grams: 150,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
   {
     name: "Fresh Deodorant Roll-On",
@@ -517,6 +573,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 10900,
     weight_grams: 50,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
 
   // Household Essentials
@@ -527,6 +584,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 19900,
     weight_grams: 700,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
   {
     name: "Stackable Storage Container",
@@ -536,6 +594,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 24900,
     weight_grams: 300,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
   {
     name: "Non-Stick Frying Pan",
@@ -544,6 +603,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 59900,
     weight_grams: 900,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
 
   // Cleaning Supplies
@@ -555,6 +615,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 24900,
     weight_grams: 1500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
   {
     name: "Dishwashing Liquid",
@@ -564,6 +625,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 9900,
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
   {
     name: "Multi-Surface Cleaner",
@@ -572,6 +634,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 12900,
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
   {
     name: "Household Disinfectant",
@@ -581,6 +644,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 15900,
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
 
   // Baby Care
@@ -592,6 +656,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 39900,
     weight_grams: 900,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
   {
     name: "Baby Rice Cereal",
@@ -601,6 +666,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 18900,
     weight_grams: 250,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
   {
     name: "Gentle Baby Shampoo",
@@ -609,6 +675,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 15900,
     weight_grams: 200,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
 
   // Pet Supplies
@@ -620,6 +687,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 34900,
     weight_grams: 2000,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
   {
     name: "Tuna Cat Food",
@@ -629,6 +697,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 7900,
     weight_grams: 85,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
   {
     name: "Crunchy Dog Treats",
@@ -638,6 +707,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 12900,
     weight_grams: 200,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
   {
     name: "Pet Grooming Shampoo",
@@ -647,6 +717,7 @@ const mockProducts: MockProduct[] = [
     price_cents: 19900,
     weight_grams: 250,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
+    is_featured: false,
   },
 ];
 

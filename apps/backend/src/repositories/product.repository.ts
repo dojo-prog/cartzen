@@ -18,8 +18,9 @@ import buildUpdateQueries from "../utils/query-builder/buildUpdateQueries";
 export const find = async (
   filters: ProductQuery,
 ): Promise<{ products: ProductWithRelations[]; total: number }> => {
-  const { category, minPrice, maxPrice, inStock, ...generic } = filters;
-  const specific = { category, minPrice, maxPrice, inStock };
+  const { category, minPrice, maxPrice, inStock, featured, ...generic } =
+    filters;
+  const specific = { category, minPrice, maxPrice, inStock, featured };
 
   const { conditions: baseCon, values: baseVal } =
     buildProductSpecificFilters(specific);

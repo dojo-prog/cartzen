@@ -81,6 +81,7 @@ const initDb = async () => {
       thumbnail_url text,
       thumbnail_public_id text,
       is_active boolean NOT NULL DEFAULT false,
+      is_featured boolean NOT NULL DEFAULT false,
       created_at timestamptz NOT NULL DEFAULT now(),
       updated_at timestamptz NOT NULL DEFAULT now()
     );

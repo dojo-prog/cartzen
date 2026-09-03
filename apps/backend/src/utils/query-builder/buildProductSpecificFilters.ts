@@ -8,7 +8,7 @@ interface BuildProductSpecificFiltersResult {
 const buildProductSpecificFilters = (
   specificFilters: ProductSpecificQuery,
 ): BuildProductSpecificFiltersResult => {
-  const { category, minPrice, maxPrice, inStock } = specificFilters;
+  const { category, minPrice, maxPrice, inStock, featured } = specificFilters;
 
   const conditions: string[] = [];
   const values: unknown[] = [];
@@ -30,6 +30,10 @@ const buildProductSpecificFilters = (
 
   if (inStock) {
     conditions.push(`i.quantity > 0`);
+  }
+
+  if (featured) {
+    conditions.push("p.isFeatured = true");
   }
 
   return {

@@ -43,6 +43,8 @@ export const WeightGramsSchema = z.coerce
 
 export const IsActiveSchema = z.boolean().default(false);
 
+export const IsFeaturedSchema = z.boolean().default(false);
+
 // =======================================
 // ENUM SCHEMA
 // =======================================
@@ -71,6 +73,7 @@ export const ProductEntitySchema = z.object({
   thumbnail_url: ImageUrlSchema,
   thumbnail_public_id: ImagePublicIdSchema,
   is_active: IsActiveSchema,
+  is_featured: IsFeaturedSchema,
   created_at: IsoDatetimeSchema,
   updated_at: IsoDatetimeSchema,
 });

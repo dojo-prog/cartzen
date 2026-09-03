@@ -33,6 +33,7 @@ export const ProductSpecificQuerySchema = z.object({
   minPrice: NonNegativeIntSchema.optional(),
   maxPrice: NonNegativeIntSchema.optional(),
   inStock: z.coerce.boolean().optional(),
+  featured: z.coerce.boolean().optional(),
 });
 
 export const ProductQuerySchema = z
