@@ -1,3 +1,4 @@
+import { useCurrentUser } from "@/features/auth/hooks/useCurrentUser";
 import AdminLayout from "@/layouts/AdminLayout";
 import StoreLayout from "@/layouts/StoreLayout";
 import LoginPage from "@/pages/auth/LoginPage";
@@ -9,10 +10,12 @@ import PaymentsPage from "@/pages/public/PaymentsPage";
 import ProductDetailsPage from "@/pages/public/ProductDetailsPage";
 import ProductsPage from "@/pages/public/ProductsPage";
 import SubcategoryPage from "@/pages/public/SubcategoryPage";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { Toaster } from "sonner";
 
 const App = () => {
+  const { data: user } = useCurrentUser();
+
   return (
     <>
       <Routes>
@@ -37,14 +40,23 @@ const App = () => {
         </Route>
 
         {/* Auth */}
-        <Route path="/auth">
+        <Route path="/auth" element={user && <Navigate to={"/"} />}>
           <Route index element={<LoginPage />} />
           <Route path="login" element={<LoginPage />} />
           <Route path="signup" element={<SignupPage />} />
         </Route>
 
         {/* Admin */}
-        <Route path="/admin" element={<AdminLayout />}>
+        <Route
+          path="/admin"
+          element={
+            user && user.role === "admin" ? (
+              <AdminLayout />
+            ) : (
+              <Navigate to={"/"} />
+            )
+          }
+        >
           {/* Admin routes */}
         </Route>
       </Routes>
