@@ -33,7 +33,7 @@ const buildProductSpecificFilters = (
   }
 
   if (featured) {
-    conditions.push("p.isFeatured = true");
+    conditions.push("p.is_featured = true");
   }
 
   return {
