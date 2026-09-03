@@ -13,6 +13,7 @@ import {
 import {
   addToCart,
   getCartItemById,
+  getCartItemCount,
   getCartItems,
   removeFromCart,
   updateItemQuantity,
@@ -27,6 +28,8 @@ router
   .route("/")
   .get(readLimiter, validate({ query: CartItemQuerySchema }), getCartItems)
   .post(writeLimiter, validate({ body: AddToCartBodySchema }), addToCart);
+
+router.get("/count", getCartItemCount);
 
 router
   .route("/:productId")

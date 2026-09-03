@@ -82,3 +82,15 @@ export const removeFromCart: Controller = async (req, res, next) => {
     next(error);
   }
 };
+
+export const getCartItemCount: Controller = async (req, res, next) => {
+  try {
+    const total_count = await cartItemService.getCartItemCount({
+      userId: req.user!.id,
+    });
+
+    res.status(200).json({ success: true, data: { total_count } });
+  } catch (error) {
+    next(error);
+  }
+};

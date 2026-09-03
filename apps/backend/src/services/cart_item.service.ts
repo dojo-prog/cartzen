@@ -2,6 +2,7 @@ import { CartItemWithRelations } from "@cartzen/shared";
 import AppError from "../utils/AppError";
 import {
   AddToCartParams,
+  getCartItemCountParams,
   GetCartItemParams,
   GetCartItemsParams,
   GetCartItemsResult,
@@ -149,4 +150,12 @@ export const removeFromCart = async (
   }
 
   await cartItemRepository.remove(userId, productId);
+};
+
+export const getCartItemCount = async (
+  params: getCartItemCountParams,
+): Promise<number> => {
+  const { userId } = params;
+
+  return await cartItemRepository.findItemCount(userId);
 };

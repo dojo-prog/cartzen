@@ -36,6 +36,10 @@ export interface RemoveFromCartParams {
   productId: string;
 }
 
+export interface getCartItemCountParams {
+  userId: string;
+}
+
 // =======================================
 // REPOSITORY DATA
 // =======================================

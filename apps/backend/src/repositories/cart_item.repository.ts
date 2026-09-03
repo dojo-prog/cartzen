@@ -79,6 +79,21 @@ export const findById = async (
   return rows[0];
 };
 
+export const findItemCount = async (userId: string): Promise<number> => {
+  const { rows } = await pool.query(
+    `
+    SELECT COUNT(cm.*) AS total_count
+    FROM cart_items cm
+    JOIN carts c 
+      ON c.id = cm.cart_id 
+    WHERE c.user_id = $1
+    `,
+    [userId],
+  );
+
+  return rows[0].total_count ?? 0;
+};
+
 export const add = async (
   userId: string,
   data: AddToCartData,

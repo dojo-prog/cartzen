@@ -15,6 +15,12 @@ export const getCartItems = async (
   return data.data;
 };
 
+export const getCartItemCount = async (): Promise<number> => {
+  const { data } = await api.get("/v1/cart/items/count");
+
+  return data.data.total_count;
+};
+
 export const addToCart = async (
   body: AddToCartBody,
 ): Promise<CartItemWithRelations> => {
