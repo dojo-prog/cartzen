@@ -6,6 +6,7 @@ interface MockProduct {
   weight_grams: number;
   initial_quantity: number;
   is_featured: boolean;
+  thumbnail_url?: string;
 }
 
 const mockProducts: MockProduct[] = [
@@ -18,6 +19,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 1000,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: true,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Fresh Carrots",
@@ -28,6 +31,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Fresh Spinach",
@@ -38,6 +43,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 250,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: true,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Fresh Button Mushrooms",
@@ -47,6 +54,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 250,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 
   // Meat & Poultry
@@ -59,6 +68,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: true,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Pork Liempo",
@@ -68,6 +79,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Fresh Chicken Breast",
@@ -78,6 +91,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: true,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Beef Hotdog",
@@ -88,6 +103,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 400,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 
   // Seafood
@@ -99,6 +116,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: true,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Fresh Shrimp",
@@ -109,6 +128,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Frozen Salmon Fillet",
@@ -118,6 +139,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 250,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: true,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 
   // Dairy & Eggs
@@ -129,6 +152,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 1000,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Cheddar Cheese Block",
@@ -139,6 +164,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 200,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: true,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Plain Greek Yogurt",
@@ -149,6 +176,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Premium Brown Eggs",
@@ -158,6 +187,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 600,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: true,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 
   // Bakery
@@ -169,6 +200,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 400,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Butter Croissant",
@@ -178,6 +211,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 80,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: true,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Chocolate Fudge Cake",
@@ -187,6 +222,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 800,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: true,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 
   // Canned & Packaged Foods
@@ -198,6 +235,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 175,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Canned Tuna Flakes",
@@ -208,6 +247,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 180,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: true,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Instant Chicken Noodles",
@@ -217,6 +258,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 60,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Macaroni Pasta Pack",
@@ -227,6 +270,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 
   // Rice, Grains & Pasta
@@ -239,6 +284,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 5000,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: true,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Spaghetti Pasta",
@@ -249,6 +296,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Instant Ramen Noodles",
@@ -259,6 +308,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 400,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Rolled Oats",
@@ -269,6 +320,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 
   // Snacks
@@ -281,6 +334,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 150,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: true,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Butter Biscuits",
@@ -291,6 +346,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 200,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Milk Chocolate Bar",
@@ -300,6 +357,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 100,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: true,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Assorted Fruit Candies",
@@ -310,6 +369,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 150,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 
   // Beverages
@@ -322,6 +383,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 1500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Fresh Orange Juice",
@@ -332,6 +395,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 1000,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: true,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Purified Drinking Water",
@@ -341,6 +406,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 1500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Electrolyte Sports Drink",
@@ -351,6 +418,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 
   // Coffee & Tea
@@ -363,6 +432,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 250,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: true,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Earl Grey Tea Bags",
@@ -372,6 +443,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 40,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Creamy Hot Chocolate Mix",
@@ -381,6 +454,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 300,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 
   // Condiments & Sauces
@@ -392,6 +467,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Creamy Mayonnaise",
@@ -402,6 +479,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 470,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Premium Soy Sauce",
@@ -412,6 +491,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Cane Vinegar",
@@ -422,6 +503,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 
   // Cooking Essentials
@@ -434,6 +517,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 1000,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Fine Iodized Salt",
@@ -443,6 +528,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "All-Purpose Flour",
@@ -452,6 +539,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 1000,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Ground Black Pepper",
@@ -462,6 +551,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 100,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 
   // Frozen Foods
@@ -474,6 +565,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Frozen Chicken Nuggets",
@@ -484,6 +577,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Vanilla Ice Cream",
@@ -493,6 +588,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 1000,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Frozen Beef Lasagna",
@@ -503,6 +600,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 400,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 
   // Breakfast Foods
@@ -514,6 +613,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Instant Oatmeal",
@@ -523,6 +624,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 400,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Creamy Peanut Butter",
@@ -533,6 +636,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 340,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 
   // Personal Care
@@ -545,6 +650,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 400,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Moisturizing Body Wash",
@@ -555,6 +662,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 400,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Mint Toothpaste",
@@ -564,6 +673,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 150,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Fresh Deodorant Roll-On",
@@ -574,6 +685,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 50,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 
   // Household Essentials
@@ -585,6 +698,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 700,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Stackable Storage Container",
@@ -595,6 +710,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 300,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Non-Stick Frying Pan",
@@ -604,6 +721,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 900,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 
   // Cleaning Supplies
@@ -616,6 +735,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 1500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Dishwashing Liquid",
@@ -626,6 +747,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Multi-Surface Cleaner",
@@ -635,6 +758,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Household Disinfectant",
@@ -645,6 +770,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 
   // Baby Care
@@ -657,6 +784,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 900,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Baby Rice Cereal",
@@ -667,6 +796,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 250,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Gentle Baby Shampoo",
@@ -676,6 +807,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 200,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 
   // Pet Supplies
@@ -688,6 +821,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 2000,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Tuna Cat Food",
@@ -698,6 +833,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 85,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Crunchy Dog Treats",
@@ -708,6 +845,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 200,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Pet Grooming Shampoo",
@@ -718,6 +857,8 @@ const mockProducts: MockProduct[] = [
     weight_grams: 250,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    thumbnail_url:
+      "https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 ];
 
