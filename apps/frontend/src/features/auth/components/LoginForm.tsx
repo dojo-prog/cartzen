@@ -15,6 +15,7 @@ import { Input } from "@/components/ui/input";
 import { LoginBodySchema, type LoginBody } from "@cartzen/shared";
 import { useLogin } from "../hooks/useLogin";
 import ButtonLoading from "@/components/common/ButtonLoading";
+import { Link } from "react-router-dom";
 
 const LoginForm = () => {
   const form = useForm({
@@ -88,7 +89,8 @@ const LoginForm = () => {
 
               {/* Signup */}
               <FieldDescription className="text-center">
-                Don&apos;t have an account? <a href="#">Sign up</a>
+                Don&apos;t have an account?{" "}
+                <Link to={"/auth/register"}>Sign up</Link>
               </FieldDescription>
             </FieldGroup>
           </form>
