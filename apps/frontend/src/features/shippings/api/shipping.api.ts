@@ -1,0 +1,28 @@
+import { api } from "@/services/api/axios";
+import type {
+  CreateShippingBody,
+  Shipping,
+  UpdateShippingBody,
+} from "@cartzen/shared";
+
+export const createShipping = async (
+  body: CreateShippingBody,
+): Promise<Shipping> => {
+  const { data } = await api.post("/v1/shipping", body);
+
+  return data.data.shipping;
+};
+
+export const updateShipping = async (
+  body: UpdateShippingBody,
+): Promise<Shipping> => {
+  const { data } = await api.patch("/v1/shipping", body);
+
+  return data.data.shipping;
+};
+
+export const deleteShipping = async (): Promise<Shipping> => {
+  const { data } = await api.delete("/v1/shipping");
+
+  return data.data.shipping;
+};
