@@ -15,6 +15,14 @@ export const getProducts = async (
   return data.data;
 };
 
+export const getFeatured = async (): Promise<ProductWithRelations[]> => {
+  const { data } = await api.get("/v1/products", {
+    params: { page: 1, limit: 10, featured: true },
+  });
+
+  return data.data.products;
+};
+
 export const getProduct = async (
   productId: string,
 ): Promise<ProductWithRelations> => {
