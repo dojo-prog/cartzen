@@ -12,7 +12,8 @@ export const useCheckout = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["user-orders"] });
       queryClient.invalidateQueries({ queryKey: ["orders"] });
-      queryClient.removeQueries({ queryKey: ["cart-items"] });
+      queryClient.removeQueries({ queryKey: ["all-cart-items"] });
+      queryClient.removeQueries({ queryKey: ["cart-items-count"] });
 
       toast.success("Order placed");
     },
