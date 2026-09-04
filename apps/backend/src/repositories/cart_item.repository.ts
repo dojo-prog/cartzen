@@ -82,7 +82,7 @@ export const findById = async (
 export const findItemCount = async (userId: string): Promise<number> => {
   const { rows } = await pool.query(
     `
-    SELECT COUNT(cm.*) AS total_count
+    SELECT COALESCE(SUM(cm.quantity), 0) AS total_count
     FROM cart_items cm
     JOIN carts c 
       ON c.id = cm.cart_id 
