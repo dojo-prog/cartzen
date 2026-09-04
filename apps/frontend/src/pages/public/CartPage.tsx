@@ -1,7 +1,45 @@
-import React from "react";
+import { useCartItems } from "@/features/carts/hooks/useCartItems";
+import Summary from "./carts/Summary";
+import CartItemList from "./carts/CartItemList";
+import EmptyCart from "./carts/EmptyCart";
+import { useCurrentUser } from "@/features/auth/hooks/useCurrentUser";
+import RequireAuth from "@/components/feedback/RequireAuth";
 
 const CartPage = () => {
-  return <div>CartPage</div>;
+  const { data: cartItemData } = useCartItems({ page: 1, limit: 10 });
+  const { data: user, isLoading: isUserLoading } = useCurrentUser();
+
+  const cartItems = cartItemData?.pages.flatMap((page) => page.cart_items);
+
+  const subtotal = cartItems?.reduce(
+    (total, item) => total + (item.product.price_cents / 100) * item.quantity,
+    0,
+  );
+
+  return (
+    <div className="container mx-auto space-y-8 py-8">
+      {/* Header */}
+      <div>
+        <h1 className="text-3xl font-bold">Your Cart</h1>
+        <p className="text-muted-foreground">
+          Review your items before checkout.
+        </p>
+      </div>
+
+      {isUserLoading ? null : !user ? (
+        <RequireAuth />
+      ) : cartItems?.length === 0 ? (
+        <EmptyCart />
+      ) : (
+        cartItems && (
+          <div className="grid gap-8 lg:grid-cols-[1fr_360px]">
+            <CartItemList cartItems={cartItems} />
+            <Summary subtotal={subtotal ?? 0} />
+          </div>
+        )
+      )}
+    </div>
+  );
 };
 
 export default CartPage;
