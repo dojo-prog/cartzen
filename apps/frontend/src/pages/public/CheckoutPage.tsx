@@ -13,6 +13,7 @@ import ShippingDetails from "./checkout/ShippingDetails";
 import StoreDetails from "./checkout/StoreDetails";
 import CartItems from "./checkout/CartItems";
 import SummaryTotal from "./checkout/SummaryTotal";
+import CartEmpty from "./checkout/CartEmpty";
 
 const CheckoutPage = () => {
   const { data: addresses } = useAddresses();
@@ -36,21 +37,7 @@ const CheckoutPage = () => {
 
   const total = subtotal + shippingFee;
 
-  if (cartItems?.length === 0) {
-    return (
-      <div className="container mx-auto flex min-h-[60vh] flex-col items-center justify-center px-4 text-center">
-        <h1 className="text-2xl font-bold">Your cart is empty</h1>
-
-        <p className="mt-2 text-muted-foreground">
-          Add some products before proceeding to checkout.
-        </p>
-
-        <Button className="mt-6">
-          <Link to="/products">Continue Shopping</Link>
-        </Button>
-      </div>
-    );
-  }
+  if (cartItems?.length === 0) return <CartEmpty />;
 
   return (
     <div className="container mx-auto space-y-8 px-4 py-8">
