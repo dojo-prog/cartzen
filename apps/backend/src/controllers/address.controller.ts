@@ -44,15 +44,13 @@ export const getAddressById: Controller = async (req, res, next) => {
 
 export const updateAddress: Controller = async (req, res, next) => {
   try {
-    const address = await addressService.updateAddress({
+    const data = await addressService.updateAddress({
       userId: req.user!.id,
       addressId: req.params.addressId as string,
       payload: req.body as UpdateAddressBody,
     });
 
-    res
-      .status(200)
-      .json({ success: true, message: "Address updated", data: { address } });
+    res.status(200).json({ success: true, message: "Address updated", data });
   } catch (error) {
     next(error);
   }
