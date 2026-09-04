@@ -80,8 +80,10 @@ export const updateAddress = async (
     throw new AppError(404, "Address not found");
   }
 
+  const { addressLine, ...rest } = payload;
+
   const { old_values, new_values } = generateChanges(address, {
-    ...payload,
+    ...rest,
     address_line: payload.addressLine,
   });
 
