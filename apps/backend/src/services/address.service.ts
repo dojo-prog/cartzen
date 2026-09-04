@@ -42,8 +42,10 @@ export const createAddress = async (
     address_line: payload.addressLine,
   });
 
+  const { addressLine, ...rest } = payload;
+
   const finalPayload: CreateAddressData = {
-    ...payload,
+    ...rest,
     user_id: userId,
     address_line: payload.addressLine,
     latitude,
