@@ -15,6 +15,12 @@ export const getCategories = async (
   return data.data;
 };
 
+export const getAllCategories = async (): Promise<Category[]> => {
+  const { data } = await api.get("/v1/categories/all");
+
+  return data.data.categories;
+};
+
 export const getCategory = async (categorySlug: string): Promise<Category> => {
   const { data } = await api.get(`/v1/categories/${categorySlug}`);
 
