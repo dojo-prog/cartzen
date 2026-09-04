@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 import ShippingAddressSelector from "./checkout/ShippingAddressSelector";
 import { useAddresses } from "@/features/addresses/hooks/useAddresses";
-import { useCartItems } from "@/features/carts/hooks/useCartItems";
+import { useAllCartItems } from "@/features/carts/hooks/useAllCartItems";
 
 const CheckoutPage = () => {
   const { data: addresses } = useAddresses();
@@ -15,12 +15,15 @@ const CheckoutPage = () => {
     addresses?.find((address) => address.is_default)?.id,
   );
 
-  const { data: cartItemData } = useCartItems();
+  const { data: cartItems } = useAllCartItems();
 
-  const subtotal = cartItems.reduce(
-    (total, item) => total + (item.price_cents / 100) * item.quantity,
-    0,
-  );
+  const subtotal = cartItems
+    ? cartItems?.reduce(
+        (total, item) =>
+          total + (item.product.price_cents / 100) * item.quantity,
+        0,
+      )
+    : 0;
 
   const shipping = subtotal > 0 ? 100 : 0;
   const total = subtotal + shipping;
@@ -29,7 +32,7 @@ const CheckoutPage = () => {
     console.log("Add address");
   };
 
-  if (cartItems.length === 0) {
+  if (cartItems?.length === 0) {
     return (
       <div className="container mx-auto flex min-h-[60vh] flex-col items-center justify-center px-4 text-center">
         <h1 className="text-2xl font-bold">Your cart is empty</h1>
@@ -87,19 +90,19 @@ const CheckoutPage = () => {
 
           <CardContent className="space-y-5">
             <div className="space-y-4">
-              {cartItems.map((item) => (
-                <div key={item.id} className="flex gap-3">
+              {cartItems?.map((item) => (
+                <div key={item.product.id} className="flex gap-3">
                   <div className="size-16 shrink-0 overflow-hidden rounded-md border">
                     <img
-                      src={item.thumbnail_url}
-                      alt={item.name}
+                      src={item.product.thumbnail_url}
+                      alt={item.product.name}
                       className="size-full object-cover"
                     />
                   </div>
 
                   <div className="min-w-0 flex-1">
                     <p className="line-clamp-2 text-sm font-medium">
-                      {item.name}
+                      {item.product.name}
                     </p>
 
                     <p className="mt-1 text-sm text-muted-foreground">
@@ -109,12 +112,12 @@ const CheckoutPage = () => {
 
                   <p className="text-sm font-medium">
                     ₱
-                    {((item.price_cents / 100) * item.quantity).toLocaleString(
-                      undefined,
-                      {
-                        minimumFractionDigits: 2,
-                      },
-                    )}
+                    {(
+                      (item.product.price_cents / 100) *
+                      item.quantity
+                    ).toLocaleString(undefined, {
+                      minimumFractionDigits: 2,
+                    })}
                   </p>
                 </div>
               ))}
