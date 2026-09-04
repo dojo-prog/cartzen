@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import ShippingAddressSelector from "./checkout/ShippingAddressSelector";
 import { useAddresses } from "@/features/addresses/hooks/useAddresses";
 import { useAllCartItems } from "@/features/carts/hooks/useAllCartItems";
@@ -14,6 +13,8 @@ import StoreDetails from "./checkout/StoreDetails";
 import CartItems from "./checkout/CartItems";
 import SummaryTotal from "./checkout/SummaryTotal";
 import CartEmpty from "./checkout/CartEmpty";
+import { useCheckout } from "@/features/orders/hooks/useCheckout";
+import ButtonLoading from "@/components/common/ButtonLoading";
 
 const CheckoutPage = () => {
   const { data: addresses } = useAddresses();
@@ -27,15 +28,23 @@ const CheckoutPage = () => {
 
   const { data: shippingCalculation } = useCalculateShipping(selectedAddressId);
 
+  const { mutate: checkout, isPending: checkingOut } = useCheckout();
+
+  // Totals
   const subtotal =
     cartItems?.reduce(
       (total, item) => total + item.product.price_cents * item.quantity,
       0,
     ) ?? 0;
-
   const shippingFee = shippingCalculation?.shipping_fee_cents ?? 0;
-
   const total = subtotal + shippingFee;
+
+  // Handlers
+  const handleCheckout = () => {
+    if (!selectedAddressId) return;
+
+    checkout({ address_id: selectedAddressId });
+  };
 
   if (cartItems?.length === 0) return <CartEmpty />;
 
@@ -94,9 +103,12 @@ const CheckoutPage = () => {
             <Button
               className="w-full"
               size="lg"
-              disabled={!selectedAddressId || !shippingCalculation}
+              disabled={
+                !selectedAddressId || !shippingCalculation || checkingOut
+              }
+              onClick={handleCheckout}
             >
-              Place Order
+              <ButtonLoading btnTitle={"Place Order"} isLoading={checkingOut} />
             </Button>
           </CardContent>
         </Card>

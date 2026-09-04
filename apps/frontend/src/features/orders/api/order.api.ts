@@ -19,7 +19,7 @@ export const getUserOrder = async (
 };
 
 export const checkout = async (body: CheckoutBody) => {
-  const { data } = await api.post(`/v1/orders`, body);
+  const { data } = await api.post(`/v1/orders/checkout`, body);
 
   return data.data.order;
 };
