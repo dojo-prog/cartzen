@@ -1,15 +1,7 @@
 import ProductCard from "@/features/products/components/ProductCard";
-import ProductCardSkeleton from "@/features/products/components/ProductCardSkeleton";
+import ProductCardSkeletons from "@/features/products/components/ProductCardsSkeletion";
 import { useProducts } from "@/features/products/hooks/useProducts";
 import { useScroll } from "@/hooks/useScroll";
-
-const ProductCardSkeletons = ({ count }: { count: number }) => (
-  <>
-    {Array.from({ length: count }).map((_, i) => (
-      <ProductCardSkeleton key={i} />
-    ))}
-  </>
-);
 
 const ProductsPage = () => {
   const { data, isPending, hasNextPage, fetchNextPage, isFetchingNextPage } =
