@@ -16,7 +16,7 @@ export const getPaymentByOrder = async (orderId: string): Promise<Payment> => {
 };
 
 export const payOrder = async (orderId: string): Promise<OrderWithItems> => {
-  const { data } = await api.post(`/v1/order/${orderId}/payments`);
+  const { data } = await api.post(`/v1/orders/${orderId}/payments`);
 
   return data.data.order;
 };

@@ -41,6 +41,11 @@ const App = () => {
             element={user ? <CheckoutPage /> : <Navigate to={"/"} />}
           />
 
+          <Route
+            path="payments"
+            element={user ? <PaymentsPage /> : <Navigate to={"/"} />}
+          />
+
           <Route path="orders" element={<OrdersPage />} />
 
           <Route path="payments/:orderId" element={<PaymentsPage />} />

@@ -18,7 +18,7 @@ export const getUserOrder = async (
   return data.data.order;
 };
 
-export const checkout = async (body: CheckoutBody) => {
+export const checkout = async (body: CheckoutBody): Promise<OrderWithItems> => {
   const { data } = await api.post(`/v1/orders/checkout`, body);
 
   return data.data.order;
