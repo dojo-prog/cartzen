@@ -16,6 +16,10 @@ export const useRemoveFromCart = () => {
       });
 
       queryClient.invalidateQueries({
+        queryKey: ["all-cart-items"],
+      });
+
+      queryClient.invalidateQueries({
         queryKey: ["cart-items-count"],
       });
 

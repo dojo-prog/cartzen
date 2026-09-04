@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import * as cartItemApi from "../api/cart.api";
 import { toast } from "sonner";
 import { handleApiError } from "@/utils/handleApiError";
+import type { CartItemWithRelations } from "@cartzen/shared";
 
 export const useAddToCart = () => {
   const queryClient = useQueryClient();
@@ -10,10 +11,19 @@ export const useAddToCart = () => {
   return useMutation({
     mutationFn: cartItemApi.addToCart,
 
-    onSuccess: () => {
+    onSuccess: (added) => {
       queryClient.invalidateQueries({
         queryKey: ["cart-items"],
       });
+
+      queryClient.setQueryData<CartItemWithRelations[]>(
+        ["all-cart-items"],
+        (old) => {
+          if (!old) return [added];
+
+          return [added, ...old];
+        },
+      );
 
       queryClient.invalidateQueries({ queryKey: ["cart-items-count"] });
 

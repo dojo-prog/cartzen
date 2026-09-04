@@ -1,15 +1,13 @@
-import { useCartItems } from "@/features/carts/hooks/useCartItems";
 import Summary from "./carts/Summary";
 import CartItemList from "./carts/CartItemList";
 import EmptyCart from "./carts/EmptyCart";
 import { useCurrentUser } from "@/features/auth/hooks/useCurrentUser";
 import RequireAuth from "@/components/feedback/RequireAuth";
+import { useAllCartItems } from "@/features/carts/hooks/useAllCartItems";
 
 const CartPage = () => {
-  const { data: cartItemData } = useCartItems({ page: 1, limit: 10 });
+  const { data: cartItems } = useAllCartItems();
   const { data: user, isLoading: isUserLoading } = useCurrentUser();
-
-  const cartItems = cartItemData?.pages.flatMap((page) => page.cart_items);
 
   const subtotal = cartItems?.reduce(
     (total, item) => total + (item.product.price_cents / 100) * item.quantity,

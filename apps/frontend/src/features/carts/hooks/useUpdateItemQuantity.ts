@@ -47,6 +47,17 @@ export const useUpdateItemQuantity = () => {
         },
       );
 
+      queryClient.setQueryData<CartItemWithRelations[]>(
+        ["all-cart-items"],
+        (old) => {
+          if (!old) return old;
+
+          return old.map((ci) =>
+            ci.product.id === updated.product.id ? updated : ci,
+          );
+        },
+      );
+
       queryClient.invalidateQueries({ queryKey: ["cart-items-count"] });
 
       toast.success("Item quantity updated");

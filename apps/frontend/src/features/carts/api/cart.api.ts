@@ -15,6 +15,12 @@ export const getCartItems = async (
   return data.data;
 };
 
+export const getAllCartItems = async (): Promise<CartItemWithRelations[]> => {
+  const { data } = await api.get("/v1/cart/items/all");
+
+  return data.data.cart_items;
+};
+
 export const getCartItemCount = async (): Promise<number> => {
   const { data } = await api.get("/v1/cart/items/count");
 
