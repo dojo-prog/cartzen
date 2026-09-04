@@ -1,4 +1,4 @@
-import { Shipping } from "@cartzen/shared";
+import { Shipping, Store, UserAddress } from "@cartzen/shared";
 import { UpdateResult } from "./common";
 
 // =======================================
@@ -19,6 +19,11 @@ export interface UpdateShippingParams {
   payload: BaseShippingPayload;
 }
 
+export interface CalculateShippingParams {
+  addressId: string;
+  userId: string;
+}
+
 // =======================================
 // REPOSITORY DATA
 // =======================================
@@ -34,3 +39,9 @@ export interface CreateShippingData {
 // =======================================
 
 export type UpdateShippingResult = UpdateResult<"shipping", Shipping>;
+
+export type CalculateShippingResult = {
+  shipping_fee_cents: number;
+  shipping_distance_meters: number;
+  store_address: Store;
+};

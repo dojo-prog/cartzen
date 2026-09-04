@@ -1,11 +1,13 @@
 import express from "express";
 import { authorizeRoles, protectRoute } from "../middlewares/auth.middleware";
 import {
+  AddressParamsSchema,
   CreateShippingBodySchema,
   UpdateShippingBodySchema,
 } from "@cartzen/shared";
 import validate from "../middlewares/validation.middleware";
 import {
+  calculateShipping,
   createShipping,
   deleteShipping,
   getShippingDetails,
@@ -41,5 +43,12 @@ router
     authorizeRoles(["admin"]),
     deleteShipping,
   );
+
+router.get(
+  "/calculate/:addressId",
+  protectRoute,
+  validate({ params: AddressParamsSchema }),
+  calculateShipping,
+);
 
 export default router;

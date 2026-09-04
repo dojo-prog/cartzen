@@ -6,14 +6,19 @@ import {
 
 import AppError from "../utils/AppError";
 import generateChanges from "../utils/generateChanges";
-
-import * as shippingRepository from "../repositories/shipping.repository";
 import {
+  CalculateShippingParams,
+  CalculateShippingResult,
   CreateShippingData,
   CreateShippingParams,
   UpdateShippingParams,
   UpdateShippingResult,
 } from "../types/entities/shipping.types";
+import { calculateDistanceMeters } from "../utils/calculateDistanceMeters";
+
+import * as shippingRepository from "../repositories/shipping.repository";
+import * as storeRepository from "../repositories/store.repository";
+import * as addressRepository from "../repositories/address.repository";
 
 export const getShippingDetails = async () => {
   return await shippingRepository.find();
@@ -81,4 +86,66 @@ export const deleteShipping = async (): Promise<Shipping> => {
   await shippingRepository.remove(shipping.id);
 
   return shipping;
+};
+
+export const calculateShipping = async (
+  params: CalculateShippingParams,
+): Promise<CalculateShippingResult> => {
+  const { addressId, userId } = params;
+
+  // =======================================
+  // GET USER PROVIDED ADDRESS
+  // =======================================
+
+  const address = await addressRepository.findById(userId, addressId);
+
+  if (!address) {
+    throw new AppError(404, "Shipping address not found");
+  }
+
+  // =======================================
+  // GET STORE ADDRESS
+  // =======================================
+
+  const storeAddress = await storeRepository.find();
+
+  if (!storeAddress) {
+    throw new AppError(400, "No store is currently registered");
+  }
+
+  const { latitude: storeLat, longitude: storeLon } = storeAddress;
+
+  // =======================================
+  // CALCULATE STRAIGHT-LINE DISTANCE
+  // BETWEEN ADDRESSES
+  // =======================================
+
+  const shippingDistanceMeters = Math.round(
+    calculateDistanceMeters(
+      { lat: address.latitude, lon: address.longitude },
+      { lat: storeLat, lon: storeLon },
+    ),
+  );
+
+  // =======================================
+  // GET SHIPPING METHOD
+  // =======================================
+
+  const shippingMethod = await shippingRepository.find();
+
+  if (!shippingMethod) {
+    throw new AppError(400, "No shipping method is registered currently");
+  }
+
+  const { base_fee_cents, fee_per_km_cents } = shippingMethod;
+
+  const shippingFeeCents =
+    base_fee_cents +
+    Math.ceil(shippingDistanceMeters / 1000) * fee_per_km_cents;
+
+  return {
+    shipping_fee_cents: shippingFeeCents,
+    shipping_distance_meters: shippingDistanceMeters,
+    store_address: storeAddress,
+  };
 };

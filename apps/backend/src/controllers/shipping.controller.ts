@@ -55,3 +55,16 @@ export const deleteShipping: Controller = async (req, res, next) => {
     next(error);
   }
 };
+
+export const calculateShipping: Controller = async (req, res, next) => {
+  try {
+    const data = await shippingService.calculateShipping({
+      userId: req.user!.id,
+      addressId: req.params.addressId as string,
+    });
+
+    res.status(200).json({ success: true, data });
+  } catch (error) {
+    next(error);
+  }
+};
