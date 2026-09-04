@@ -131,6 +131,8 @@ const ProductFilters = ({ filters, setFilters }: Props) => {
         >
           Featured
         </Button>
+
+        {/* TODO add sort later */}
       </div>
       {/* Clear */}
       <Button
