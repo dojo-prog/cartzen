@@ -40,11 +40,11 @@ export const payOrder = async (
     throw new AppError(402, "Payment failed");
   }
 
-  const updatedOrder = await orderRepository.markAsPaid(orderId);
+  await orderRepository.markAsPaid(orderId);
 
   return await orderService.getUserOrderById({
     userId,
-    orderId: updatedOrder.id,
+    orderId: order.id,
   });
 };
 
