@@ -98,8 +98,6 @@ export const addToCart = async (
     quantity: payload.quantity,
   };
 
-  console.log(data);
-
   return await cartItemRepository.add(userId, data);
 };
 
