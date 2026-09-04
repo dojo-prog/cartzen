@@ -1,4 +1,4 @@
-import { Order, OrderQuery } from "@cartzen/shared";
+import { Order, OrderQuery, OrderWithItems } from "@cartzen/shared";
 import { GetResult, UpdateResult } from "./common";
 
 // =======================================
@@ -42,6 +42,6 @@ export interface CreateOrderData {
 // RESULT
 // =======================================
 
-export type GetOrdersResult = GetResult<"orders", Order>;
+export type GetOrdersResult = GetResult<"orders", OrderWithItems>;
 
 export type UpdateOrderStatusResult = UpdateResult<"order", Order>;
