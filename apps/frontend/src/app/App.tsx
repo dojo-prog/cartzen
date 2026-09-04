@@ -5,6 +5,7 @@ import StoreLayout from "@/layouts/StoreLayout";
 import LoginPage from "@/pages/auth/LoginPage";
 import SignupPage from "@/pages/auth/SignupPage";
 import CartPage from "@/pages/public/CartPage";
+import CheckoutPage from "@/pages/public/CheckoutPage";
 import HomePage from "@/pages/public/HomePage";
 import OrdersPage from "@/pages/public/OrdersPage";
 import PaymentsPage from "@/pages/public/PaymentsPage";
@@ -34,6 +35,11 @@ const App = () => {
           <Route path="products/:productId" element={<ProductDetailsPage />} />
 
           <Route path="cart" element={<CartPage />} />
+
+          <Route
+            path="checkout"
+            element={user ? <CheckoutPage /> : <Navigate to={"/"} />}
+          />
 
           <Route path="orders" element={<OrdersPage />} />
 

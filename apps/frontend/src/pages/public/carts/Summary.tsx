@@ -2,12 +2,15 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { formatPrice } from "@/utils/formatPrice";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   subtotal: number;
 };
 
 const Summary = ({ subtotal }: Props) => {
+  const navigate = useNavigate();
+
   return (
     <Card className="h-fit">
       <CardHeader>
@@ -32,11 +35,19 @@ const Summary = ({ subtotal }: Props) => {
           <span>{formatPrice(subtotal ? subtotal * 100 : 0, "PHP")}</span>
         </div>
 
-        <Button className="w-full" size="lg">
+        <Button
+          className="w-full"
+          size="lg"
+          onClick={() => navigate("/checkout")}
+        >
           Proceed to Checkout
         </Button>
 
-        <Button variant="outline" className="w-full">
+        <Button
+          variant="outline"
+          className="w-full"
+          onClick={() => navigate("/")}
+        >
           Continue Shopping
         </Button>
       </CardContent>

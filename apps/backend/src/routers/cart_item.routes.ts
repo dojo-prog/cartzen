@@ -12,6 +12,7 @@ import {
 } from "../middlewares/rate.limit.middlewares";
 import {
   addToCart,
+  getAllCartItems,
   getCartItemById,
   getCartItemCount,
   getCartItems,
@@ -28,6 +29,8 @@ router
   .route("/")
   .get(readLimiter, validate({ query: CartItemQuerySchema }), getCartItems)
   .post(writeLimiter, validate({ body: AddToCartBodySchema }), addToCart);
+
+router.get("/all", getAllCartItems);
 
 router.get("/count", getCartItemCount);
 

@@ -19,6 +19,16 @@ export const getCartItems: Controller = async (req, res, next) => {
   }
 };
 
+export const getAllCartItems: Controller = async (req, res, next) => {
+  try {
+    const cart_items = await cartItemService.getAllCartItems(req.user!.id);
+
+    res.status(200).json({ success: true, data: { cart_items } });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const addToCart: Controller = async (req, res, next) => {
   try {
     const { product_id, quantity } = req.body as AddToCartBody;

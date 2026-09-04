@@ -52,6 +52,12 @@ export const getCartItems = async (
   };
 };
 
+export const getAllCartItems = async (
+  userId: string,
+): Promise<CartItemWithRelations[]> => {
+  return await cartItemRepository.findAll(userId);
+};
+
 export const addToCart = async (
   params: AddToCartParams,
 ): Promise<CartItemWithRelations> => {

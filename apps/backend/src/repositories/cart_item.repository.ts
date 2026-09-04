@@ -42,6 +42,23 @@ export const find = async (
   };
 };
 
+export const findAll = async (
+  userId: string,
+): Promise<CartItemWithRelations[]> => {
+  const { rows } = await pool.query(
+    ` 
+    SELECT ${CART_ITEM_RELATIONS_PROJECTION}
+    FROM cart_items ci
+    ${CART_ITEM_JOINS}
+    WHERE cart.user_id = $1
+    ORDER BY ci.created_at DESC
+    `,
+    [userId],
+  );
+
+  return rows;
+};
+
 export const findByCartId = async (
   cartId: string,
   client?: PoolClient,
