@@ -20,7 +20,7 @@ export const generalLimiter = rateLimit({
 // =======================================
 
 export const authLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
+  windowMs: 5 * 60 * 1000,
   limit: 10,
   standardHeaders: true,
   legacyHeaders: false,
