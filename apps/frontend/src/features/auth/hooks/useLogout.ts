@@ -11,9 +11,7 @@ export const useLogout = () => {
     mutationFn: authApi.logout,
 
     onSuccess: () => {
-      queryClient.removeQueries({
-        queryKey: ["current-user"],
-      });
+      queryClient.setQueryData(["current-user"], null);
 
       toast.success("Logout successful");
     },
