@@ -4,12 +4,12 @@ import { OrderQuerySchema } from "@cartzen/shared";
 
 export const getUserOrders: Controller = async (req, res, next) => {
   try {
-    const orders = await orderService.getUserOrders({
+    const data = await orderService.getUserOrders({
       userId: req.user!.id,
       filters: OrderQuerySchema.parse(req.query),
     });
 
-    res.status(200).json({ success: true, data: { orders } });
+    res.status(200).json({ success: true, data });
   } catch (error) {
     next(error);
   }

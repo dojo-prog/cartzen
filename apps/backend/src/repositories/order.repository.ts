@@ -8,7 +8,7 @@ import { CreateOrderData } from "../types/entities/order.types";
 export const find = async (
   userId: string,
   filters: OrderQuery,
-): Promise<Order[]> => {
+): Promise<{ orders: Order[]; total: number }> => {
   const { whereClause, limitClause, offsetClause, values } = buildFilterQueries(
     filters,
     ["user_id = $1"],
@@ -17,15 +17,23 @@ export const find = async (
 
   const { rows } = await pool.query(
     `
-    SELECT * FROM orders
+    SELECT *,
+      COUNT(*) OVER()::INT AS total
+    FROM orders
     ${whereClause}
+    ORDER BY created_at DESC
     ${limitClause}
     ${offsetClause}
     `,
     values,
   );
 
-  return rows;
+  const orders = rows.map(({ total, ...order }) => order);
+
+  return {
+    orders,
+    total: rows[0]?.total ?? 0,
+  };
 };
 
 export const findById = async (

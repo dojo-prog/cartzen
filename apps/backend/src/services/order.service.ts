@@ -6,6 +6,7 @@ import { calculateDistanceMeters } from "../utils/calculateDistanceMeters";
 import {
   CancelOrderParams,
   CheckoutParams,
+  GetOrdersResult,
   GetUserOrderParams,
   GetUserOrdersParams,
 } from "../types/entities/order.types";
@@ -23,14 +24,10 @@ import * as orderItemRepository from "../repositories/order_item.repository";
 
 export const getUserOrders = async (
   params: GetUserOrdersParams,
-): Promise<OrderWithItems[]> => {
+): Promise<GetOrdersResult> => {
   const { userId, filters } = params;
 
-  const orders = await orderRepository.find(userId, filters);
-
-  if (orders.length === 0) {
-    return [];
-  }
+  const { orders, total } = await orderRepository.find(userId, filters);
 
   const orderIds = orders.map((o) => o.id);
 
@@ -52,7 +49,17 @@ export const getUserOrders = async (
     items: itemsByOrderId.get(o.id) ?? [],
   }));
 
-  return ordersWithItems;
+  const { page, limit } = filters;
+
+  return {
+    orders: ordersWithItems,
+    pagination: {
+      page,
+      limit,
+      total,
+      total_pages: Math.ceil(total / limit),
+    },
+  };
 };
 
 export const getUserOrderById = async (
