@@ -11,13 +11,13 @@ export const getCurrentUser = async (): Promise<UserPublic> => {
 export const register = async (body: RegisterBody): Promise<UserPublic> => {
   const { data } = await api.post("/v1/auth/register", body);
 
-  return data.data.use;
+  return data.data.user;
 };
 
 export const login = async (body: LoginBody): Promise<UserPublic> => {
   const { data } = await api.post("/v1/auth/login", body);
 
-  return data.data.use;
+  return data.data.user;
 };
 
 export const logout = async (): Promise<void> => {
