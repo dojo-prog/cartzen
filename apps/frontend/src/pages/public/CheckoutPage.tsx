@@ -28,10 +28,6 @@ const CheckoutPage = () => {
   const shipping = subtotal > 0 ? 100 : 0;
   const total = subtotal + shipping;
 
-  const handleAddAddress = () => {
-    console.log("Add address");
-  };
-
   if (cartItems?.length === 0) {
     return (
       <div className="container mx-auto flex min-h-[60vh] flex-col items-center justify-center px-4 text-center">
@@ -66,7 +62,6 @@ const CheckoutPage = () => {
             addresses={addresses ?? []}
             selectedAddressId={selectedAddressId}
             onSelect={setSelectedAddressId}
-            onAddAddress={handleAddAddress}
           />
 
           <Card>

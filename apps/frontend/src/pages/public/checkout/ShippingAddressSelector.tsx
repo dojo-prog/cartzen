@@ -1,39 +1,27 @@
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import AddAddressButton from "@/features/addresses/components/AddAddressButton";
 import type { UserAddress } from "@cartzen/shared";
-import { MapPin, Plus } from "lucide-react";
+import { MapPin } from "lucide-react";
 
 type Props = {
   addresses: UserAddress[];
   selectedAddressId?: string;
   onSelect: (addressId: string) => void;
-  onAddAddress: () => void;
 };
 
 const ShippingAddressSelector = ({
   addresses,
   selectedAddressId,
   onSelect,
-  onAddAddress,
 }: Props) => {
   return (
     <Card>
       <CardHeader className="flex flex-row items-center justify-between gap-4">
         <CardTitle>Shipping Address</CardTitle>
 
-        {addresses.length > 0 && (
-          <Button
-            type="button"
-            variant="outline"
-            size="sm"
-            onClick={onAddAddress}
-          >
-            <Plus className="mr-2 size-4" />
-            Add Address
-          </Button>
-        )}
+        {addresses.length > 0 && <AddAddressButton />}
       </CardHeader>
 
       <CardContent>
@@ -49,10 +37,9 @@ const ShippingAddressSelector = ({
               Add a shipping address before placing your order.
             </p>
 
-            <Button type="button" className="mt-5" onClick={onAddAddress}>
-              <Plus className="mr-2 size-4" />
-              Add Shipping Address
-            </Button>
+            <div className="mt-8">
+              <AddAddressButton />
+            </div>
           </div>
         ) : (
           <RadioGroup
