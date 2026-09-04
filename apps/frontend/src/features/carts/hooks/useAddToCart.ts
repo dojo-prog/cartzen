@@ -15,6 +15,11 @@ export const useAddToCart = () => {
         queryKey: ["cart-items"],
       });
 
+      queryClient.setQueryData<number>(
+        ["cart-items-count"],
+        (currentCount = 0) => Number(currentCount) + 1,
+      );
+
       toast.success("Product added to cart");
     },
 

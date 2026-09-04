@@ -15,6 +15,10 @@ export const useRemoveFromCart = () => {
         queryKey: ["cart-items"],
       });
 
+      queryClient.invalidateQueries({
+        queryKey: ["cart-items-count"],
+      });
+
       toast.success("Item removed from cart");
     },
 

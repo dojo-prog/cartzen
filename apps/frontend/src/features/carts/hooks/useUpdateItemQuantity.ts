@@ -47,6 +47,8 @@ export const useUpdateItemQuantity = () => {
         },
       );
 
+      queryClient.invalidateQueries({ queryKey: ["cart-items-count"] });
+
       toast.success("Item quantity updated");
     },
 
