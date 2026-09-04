@@ -3,30 +3,38 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
 import ShippingAddressSelector from "./checkout/ShippingAddressSelector";
 import { useAddresses } from "@/features/addresses/hooks/useAddresses";
 import { useAllCartItems } from "@/features/carts/hooks/useAllCartItems";
+import { useCalculateShipping } from "@/features/shippings/hooks/useCalculateShipping";
+import { useShipping } from "@/features/shippings/hooks/useShipping";
+import { useStore } from "@/features/stores/hooks/useStore";
+import ShippingDetails from "./checkout/ShippingDetails";
+import StoreDetails from "./checkout/StoreDetails";
+import CartItems from "./checkout/CartItems";
+import SummaryTotal from "./checkout/SummaryTotal";
 
 const CheckoutPage = () => {
   const { data: addresses } = useAddresses();
-
-  const [selectedAddressId, setSelectedAddressId] = useState(
-    addresses?.find((address) => address.is_default)?.id,
-  );
-
   const { data: cartItems } = useAllCartItems();
+  const { data: storeDetails } = useStore();
+  const { data: shippingDetails } = useShipping();
 
-  const subtotal = cartItems
-    ? cartItems?.reduce(
-        (total, item) =>
-          total + (item.product.price_cents / 100) * item.quantity,
-        0,
-      )
-    : 0;
+  const [selectedAddressId, setSelectedAddressId] = useState<
+    string | undefined
+  >();
 
-  const shipping = subtotal > 0 ? 100 : 0;
-  const total = subtotal + shipping;
+  const { data: shippingCalculation } = useCalculateShipping(selectedAddressId);
+
+  const subtotal =
+    cartItems?.reduce(
+      (total, item) => total + item.product.price_cents * item.quantity,
+      0,
+    ) ?? 0;
+
+  const shippingFee = shippingCalculation?.shipping_fee_cents ?? 0;
+
+  const total = subtotal + shippingFee;
 
   if (cartItems?.length === 0) {
     return (
@@ -64,17 +72,14 @@ const CheckoutPage = () => {
             onSelect={setSelectedAddressId}
           />
 
-          <Card>
-            <CardHeader>
-              <CardTitle>Payment</CardTitle>
-            </CardHeader>
+          {/* Shipping Details */}
+          <ShippingDetails
+            shippingDetails={shippingDetails}
+            shippingCalculation={shippingCalculation}
+          />
 
-            <CardContent>
-              <p className="text-sm text-muted-foreground">
-                Payment options will be available here.
-              </p>
-            </CardContent>
-          </Card>
+          {/* Store / Origin */}
+          <StoreDetails storeDetails={storeDetails} />
         </div>
 
         {/* Right */}
@@ -84,80 +89,26 @@ const CheckoutPage = () => {
           </CardHeader>
 
           <CardContent className="space-y-5">
-            <div className="space-y-4">
-              {cartItems?.map((item) => (
-                <div key={item.product.id} className="flex gap-3">
-                  <div className="size-16 shrink-0 overflow-hidden rounded-md border">
-                    <img
-                      src={item.product.thumbnail_url}
-                      alt={item.product.name}
-                      className="size-full object-cover"
-                    />
-                  </div>
-
-                  <div className="min-w-0 flex-1">
-                    <p className="line-clamp-2 text-sm font-medium">
-                      {item.product.name}
-                    </p>
-
-                    <p className="mt-1 text-sm text-muted-foreground">
-                      Qty: {item.quantity}
-                    </p>
-                  </div>
-
-                  <p className="text-sm font-medium">
-                    ₱
-                    {(
-                      (item.product.price_cents / 100) *
-                      item.quantity
-                    ).toLocaleString(undefined, {
-                      minimumFractionDigits: 2,
-                    })}
-                  </p>
-                </div>
-              ))}
-            </div>
+            {/* Cart Items */}
+            <CartItems />
 
             <Separator />
 
-            <div className="space-y-3 text-sm">
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">Subtotal</span>
+            {/* Totals */}
+            <SummaryTotal
+              selectedAddressId={selectedAddressId}
+              shippingCalculation={shippingCalculation}
+              subtotal={subtotal}
+              shippingFee={shippingFee}
+              total={total}
+            />
 
-                <span>
-                  ₱
-                  {subtotal.toLocaleString(undefined, {
-                    minimumFractionDigits: 2,
-                  })}
-                </span>
-              </div>
-
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">Shipping</span>
-
-                <span>
-                  ₱
-                  {shipping.toLocaleString(undefined, {
-                    minimumFractionDigits: 2,
-                  })}
-                </span>
-              </div>
-
-              <Separator />
-
-              <div className="flex justify-between text-base font-semibold">
-                <span>Total</span>
-
-                <span>
-                  ₱
-                  {total.toLocaleString(undefined, {
-                    minimumFractionDigits: 2,
-                  })}
-                </span>
-              </div>
-            </div>
-
-            <Button className="w-full" size="lg" disabled={!selectedAddressId}>
+            {/* Place Order Button */}
+            <Button
+              className="w-full"
+              size="lg"
+              disabled={!selectedAddressId || !shippingCalculation}
+            >
               Place Order
             </Button>
           </CardContent>
