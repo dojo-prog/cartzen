@@ -11,6 +11,7 @@ import { authorizeRoles, protectRoute } from "../middlewares/auth.middleware";
 import {
   createCategory,
   deleteCategory,
+  getAllCategories,
   getCategories,
   getCategoryBySlug,
   updateCategory,
@@ -32,6 +33,8 @@ router
     validate({ body: CreateCategoryBodySchema }),
     createCategory,
   );
+
+router.get("/all", getAllCategories);
 
 router.get(
   "/:categorySlug",

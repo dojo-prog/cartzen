@@ -31,6 +31,17 @@ export const find = async (
   };
 };
 
+export const findAll = async (): Promise<Category[]> => {
+  const { rows } = await pool.query(
+    `
+    SELECT id, name, slug 
+    FROM categories
+    `,
+  );
+
+  return rows;
+};
+
 export const findById = async (categoryId: string): Promise<Category> => {
   const { rows } = await pool.query(
     `

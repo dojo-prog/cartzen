@@ -33,6 +33,10 @@ export const getCategories = async (
   };
 };
 
+export const getAllCategories = async (): Promise<Category[]> => {
+  return await categoryRepository.findAll();
+};
+
 export const createCategory = async (
   params: CreateCategoryParams,
 ): Promise<Category> => {
