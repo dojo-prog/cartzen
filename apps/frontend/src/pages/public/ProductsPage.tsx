@@ -18,9 +18,11 @@ const ProductsPage = () => {
     inStock: undefined,
     featured: undefined,
   });
-  const { search, category } = filters;
+  const { search, category, minPrice, maxPrice, inStock, featured } = filters;
 
   const debouncedSearch = useDebounce(search);
+  const debouncedMinPrice = useDebounce(minPrice);
+  const debouncedMaxPrice = useDebounce(maxPrice);
 
   const {
     data: productData,
@@ -28,7 +30,16 @@ const ProductsPage = () => {
     hasNextPage,
     fetchNextPage,
     isFetchingNextPage,
-  } = useProducts({ page: 1, limit: 10, search: debouncedSearch, category });
+  } = useProducts({
+    page: 1,
+    limit: 10,
+    search: debouncedSearch,
+    category,
+    minPrice: debouncedMinPrice,
+    maxPrice: debouncedMaxPrice,
+    inStock,
+    featured,
+  });
 
   const { observerRef } = useScroll({
     hasNextPage,
