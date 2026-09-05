@@ -2,6 +2,9 @@ import NotFound from "@/components/feedback/NotFound";
 import { useCurrentUser } from "@/features/auth/hooks/useCurrentUser";
 import AdminLayout from "@/layouts/AdminLayout";
 import StoreLayout from "@/layouts/StoreLayout";
+import AdminOrdersPage from "@/pages/admin/AdminOrdersPage";
+import AdminProductsPage from "@/pages/admin/AdminProductsPage";
+import AdminLoginPage from "@/pages/auth/admin/AdminLoginPage";
 import LoginPage from "@/pages/auth/public/LoginPage";
 import SignupPage from "@/pages/auth/public/SignupPage";
 import CartPage from "@/pages/public/CartPage";
@@ -65,16 +68,31 @@ const App = () => {
 
         {/* Admin */}
         <Route
+          path="/admin/auth"
+          element={
+            !user ? (
+              <AdminLoginPage />
+            ) : user && user.role === "admin" ? (
+              <Navigate to={"/admin"} />
+            ) : (
+              <Navigate to={"/"} />
+            )
+          }
+        />
+
+        <Route
           path="/admin"
           element={
             user && user.role === "admin" ? (
               <AdminLayout />
             ) : (
-              <Navigate to={"/"} />
+              !user && <Navigate to={"/admin/auth"} />
             )
           }
         >
-          {/* Admin routes */}
+          <Route index element={<AdminProductsPage />} />
+          <Route path="products" element={<AdminProductsPage />} />
+          <Route path="orders" element={<AdminOrdersPage />} />
         </Route>
 
         <Route path="*" element={<NotFound />} />
