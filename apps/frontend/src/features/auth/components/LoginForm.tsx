@@ -93,7 +93,7 @@ const LoginForm = () => {
               {/* Signup */}
               <FieldDescription className="text-center">
                 Don&apos;t have an account?{" "}
-                <Link to={"/auth/register"}>Sign up</Link>
+                <Link to={"/auth/signup"}>Sign up</Link>
               </FieldDescription>
             </FieldGroup>
           </form>
@@ -101,7 +101,7 @@ const LoginForm = () => {
           {/* Image */}
           <div className="relative hidden bg-muted md:block">
             <img
-              src="/placeholder.svg"
+              src="https://images.unsplash.com/photo-1685640206182-c51b8aa9b686?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt="Cartzen"
               className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
             />
