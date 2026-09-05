@@ -9,7 +9,7 @@ const NotFound = () => {
     <div className="relative flex min-h-[calc(100vh-4rem)] items-center justify-center overflow-hidden px-4 py-16">
       {/* Decorative background */}
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute left-1/2 top-1/2 size-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/5 blur-3xl" />
+        <div className="absolute left-1/2 top-1/2 size-125 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/5 blur-3xl" />
 
         <div className="absolute left-[15%] top-[20%] size-2 rounded-full bg-primary/20" />
         <div className="absolute right-[18%] top-[30%] size-3 rounded-full bg-primary/10" />
