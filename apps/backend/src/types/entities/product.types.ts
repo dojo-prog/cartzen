@@ -67,3 +67,10 @@ export interface CreateProductData {
 export type GetProductsResult = GetResult<"products", ProductWithRelations>;
 
 export type UpdateProductResult = UpdateResult<"product", ProductWithRelations>;
+
+export type GetProductStatsResult = {
+  total_products: number;
+  active_products: number;
+  out_of_stock_products: number;
+  featured_products: number;
+};

@@ -72,3 +72,13 @@ export const deleteProduct: Controller = async (req, res, next) => {
     next(error);
   }
 };
+
+export const getProductStats: Controller = async (req, res, next) => {
+  try {
+    const data = await productService.getProductStats();
+
+    res.status(200).json({ success: true, data });
+  } catch (error) {
+    next(error);
+  }
+};

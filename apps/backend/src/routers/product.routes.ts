@@ -13,6 +13,7 @@ import {
   deleteProduct,
   getProductById,
   getProducts,
+  getProductStats,
   updateProduct,
 } from "../controllers/product.controller";
 import {
@@ -33,6 +34,8 @@ router
     validate({ body: CreateProductBodySchema }),
     createProduct,
   );
+
+router.get("/stats", protectRoute, authorizeRoles(["admin"]), getProductStats);
 
 router
   .route("/:productId")

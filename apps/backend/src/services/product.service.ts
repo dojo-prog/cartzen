@@ -11,6 +11,7 @@ import {
   GetProductParams,
   GetProductsParams,
   GetProductsResult,
+  GetProductStatsResult,
   UpdateProductParams,
   UpdateProductResult,
 } from "../types/entities/product.types";
@@ -176,4 +177,8 @@ export const deleteProduct = async (
   await productRepository.remove(productId);
 
   return product;
+};
+
+export const getProductStats = async (): Promise<GetProductStatsResult> => {
+  return productRepository.findStats();
 };

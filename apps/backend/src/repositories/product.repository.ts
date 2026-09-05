@@ -9,7 +9,10 @@ import {
   ProductQuery,
   ProductWithRelations,
 } from "@cartzen/shared";
-import { CreateProductData } from "../types/entities/product.types";
+import {
+  CreateProductData,
+  GetProductStatsResult,
+} from "../types/entities/product.types";
 import buildFilterQueries from "../utils/query-builder/buildFilterQueries";
 import buildInsertQueries from "../utils/query-builder/buildInsertQueries";
 import buildProductSpecificFilters from "../utils/query-builder/buildProductSpecificFilters";
@@ -148,4 +151,19 @@ export const remove = async (productId: string): Promise<void> => {
     `,
     [productId],
   );
+};
+
+export const findStats = async (): Promise<GetProductStatsResult> => {
+  const { rows } = await pool.query(`
+    SELECT
+      COUNT(*) AS total_products,
+      COUNT(*) FILTER (WHERE p.is_active) AS active_products,
+      COUNT(*) FILTER (WHERE p.is_featured) AS featured_products,
+      COUNT(*) FILTER (WHERE i.quantity = 0) AS out_of_stock_products
+    FROM products p
+    LEFT JOIN inventory i 
+      ON i.product_id = p.id;
+  `);
+
+  return rows[0];
 };
