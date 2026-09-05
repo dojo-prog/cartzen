@@ -53,7 +53,7 @@ const Footer = () => {
             <h3 className="text-sm font-semibold">Support</h3>
 
             <ul className="mt-4 space-y-3">
-              <FooterLink to="/contact">Contact Us</FooterLink>
+              <FooterLink to="/contact-us">Contact Us</FooterLink>
               <FooterLink to="/shipping">Shipping Information</FooterLink>
               <FooterLink to="/returns">Returns & Refunds</FooterLink>
             </ul>

@@ -6,6 +6,7 @@ import LoginPage from "@/pages/auth/LoginPage";
 import SignupPage from "@/pages/auth/SignupPage";
 import CartPage from "@/pages/public/CartPage";
 import CheckoutPage from "@/pages/public/CheckoutPage";
+import ContactUsPage from "@/pages/public/ContactUsPage";
 import HomePage from "@/pages/public/HomePage";
 import OrderDetailsPage from "@/pages/public/OrderDetailsPage";
 import OrdersPage from "@/pages/public/OrdersPage";
@@ -25,6 +26,8 @@ const App = () => {
         {/* Public */}
         <Route path="/" element={<StoreLayout />}>
           <Route index element={<HomePage />} />
+
+          <Route path="contact-us" element={<ContactUsPage />} />
 
           <Route
             path="categories/:categoryId/subcategories/:subcategoryId"

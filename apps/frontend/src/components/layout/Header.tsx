@@ -24,7 +24,7 @@ const navItems = [
   },
   {
     title: "Contact",
-    path: "/contacts",
+    path: "/contact-us",
   },
 ];
 
