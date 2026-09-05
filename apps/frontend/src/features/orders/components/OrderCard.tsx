@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { formatDate } from "@/utils/formatDate";
 import { formatDistance } from "@/utils/formatDistance";
+import { formatOrderId } from "@/utils/formatOrderId";
 import { formatPrice } from "@/utils/formatPrice";
 import { getStatusConfig } from "@/utils/getStatusConfig";
 import { getStatusDate } from "@/utils/getStatusDate";
@@ -18,8 +19,6 @@ const OrderCard = ({ order }: Props) => {
   const status = getStatusConfig(order.status);
   const StatusIcon = status.icon;
   const statusDate = getStatusDate(order);
-
-  const formatOrderId = (id: string) => `#${id.slice(0, 8).toUpperCase()}`;
 
   return (
     <Card

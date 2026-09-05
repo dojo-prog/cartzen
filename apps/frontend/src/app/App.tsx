@@ -7,6 +7,7 @@ import SignupPage from "@/pages/auth/SignupPage";
 import CartPage from "@/pages/public/CartPage";
 import CheckoutPage from "@/pages/public/CheckoutPage";
 import HomePage from "@/pages/public/HomePage";
+import OrderDetailsPage from "@/pages/public/OrderDetailsPage";
 import OrdersPage from "@/pages/public/OrdersPage";
 import PaymentsPage from "@/pages/public/PaymentsPage";
 import ProductDetailsPage from "@/pages/public/ProductDetailsPage";
@@ -47,6 +48,7 @@ const App = () => {
           />
 
           <Route path="orders" element={<OrdersPage />} />
+          <Route path="/orders/:orderId" element={<OrderDetailsPage />} />
 
           <Route path="payments/:orderId" element={<PaymentsPage />} />
         </Route>
