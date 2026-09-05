@@ -24,8 +24,16 @@ const OrderItemsCard = ({ order }: Props) => {
         <div className="space-y-5">
           {order.items.map((item) => (
             <div key={item.id} className="flex gap-4">
-              <div className="flex size-16 shrink-0 items-center justify-center rounded-lg bg-muted">
-                <Package className="size-7 text-muted-foreground" />
+              <div className="flex size-16 shrink-0 items-center justify-center rounded-lg overflow-hidden bg-muted">
+                {item.product_thumbnail_url ? (
+                  <img
+                    src={item.product_thumbnail_url}
+                    alt={item.product_name}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <Package className="size-7 text-muted-foreground" />
+                )}
               </div>
 
               <div className="min-w-0 flex-1">
