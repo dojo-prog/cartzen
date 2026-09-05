@@ -9,6 +9,7 @@ import { useCurrentUser } from "@/features/auth/hooks/useCurrentUser";
 import { toast } from "sonner";
 import { useState } from "react";
 import { Minus, Plus, ShoppingCart, X } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface ProductCardProps {
   product: ProductWithRelations;
@@ -17,6 +18,8 @@ interface ProductCardProps {
 const ProductCard = ({ product }: ProductCardProps) => {
   const { data: user } = useCurrentUser();
   const { mutate, isPending } = useAddToCart();
+
+  const navigate = useNavigate();
 
   const [isAdding, setIsAdding] = useState(false);
   const [quantity, setQuantity] = useState(1);
@@ -58,7 +61,10 @@ const ProductCard = ({ product }: ProductCardProps) => {
   };
 
   return (
-    <Card className="group h-full overflow-hidden border pt-0 transition-shadow hover:shadow-md">
+    <Card
+      className="group h-full overflow-hidden border pt-0 transition-shadow hover:shadow-md"
+      onClick={() => navigate(`/products/${product.id}`)}
+    >
       {/* Product Image */}
       <div className="relative aspect-4/3 overflow-hidden bg-muted">
         <img
@@ -103,7 +109,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
       </CardContent>
 
       {/* Actions */}
-      <CardFooter className="p-3 pt-0">
+      <CardFooter className="p-3 pt-0" onClick={(e) => e.stopPropagation()}>
         {!isAdding ? (
           <Button
             className="h-9 w-full gap-2 text-sm"
