@@ -1,4 +1,10 @@
-import { LogIn, LogOut, ShoppingBasket, ShoppingCart } from "lucide-react";
+import {
+  LogIn,
+  LogOut,
+  Package,
+  ShoppingBasket,
+  ShoppingCart,
+} from "lucide-react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";
 import { Avatar, AvatarFallback } from "../ui/avatar";
@@ -66,7 +72,7 @@ const Header = () => {
         </nav>
 
         {/* Actions */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-4">
           {/* Cart */}
           <Button variant="ghost" size="icon" className="relative h-10 w-10">
             <Link to="/cart" aria-label="Shopping cart">
@@ -97,6 +103,17 @@ const Header = () => {
               </button>
 
               <div className="invisible absolute right-0 top-full z-50 mt-2 w-40 translate-y-1 rounded-lg border bg-background p-1 opacity-0 shadow-lg transition-all duration-150 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
+                {/* My Orders */}
+                <Button
+                  variant="ghost"
+                  onClick={() => navigate("/orders")}
+                  className="h-9 w-full justify-start gap-2 rounded-md px-3 text-sm font-normal"
+                >
+                  <Package className="size-4" />
+                  <span>My Orders</span>
+                </Button>
+
+                {/* Logout */}
                 <Button
                   variant="ghost"
                   onClick={handleLogout}
