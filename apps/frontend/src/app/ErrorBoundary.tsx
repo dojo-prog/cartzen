@@ -1,3 +1,4 @@
+import ErrorBoundaryUI from "@/components/feedback/ErrorBoundaryUI";
 import React from "react";
 
 type Props = {
@@ -26,13 +27,21 @@ export class ErrorBoundary extends React.Component<Props, State> {
     console.error("Error Boundary caught:", error);
     console.error("Component stack:", errorInfo.componentStack);
 
-    // TODO apply sending to Sentry
+    // TODO: Send error to Sentry
   }
 
-  // TODO improve UI
+  handleRetry = () => {
+    this.setState({
+      hasError: false,
+      error: null,
+    });
+  };
+
   render() {
     if (this.state.hasError) {
-      return <div>Something went wrong</div>;
+      return (
+        <ErrorBoundaryUI error={this.state.error} onRetry={this.handleRetry} />
+      );
     }
 
     return this.props.children;
