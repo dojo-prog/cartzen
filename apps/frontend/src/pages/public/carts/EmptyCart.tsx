@@ -1,8 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ShoppingCart } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const EmptyCart = () => {
+  const navigate = useNavigate();
+
   return (
     <Card>
       <CardContent className="flex flex-col items-center justify-center py-16 text-center">
@@ -14,7 +17,9 @@ const EmptyCart = () => {
           Add some products to your cart to get started.
         </p>
 
-        <Button className="mt-6">Continue Shopping</Button>
+        <Button className="mt-6" onClick={() => navigate("/products")}>
+          Continue Shopping
+        </Button>
       </CardContent>
     </Card>
   );
