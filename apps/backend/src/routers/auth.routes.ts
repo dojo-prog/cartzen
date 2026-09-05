@@ -25,6 +25,6 @@ router.post(
 );
 router.post("/login", authLimiter, validate({ body: LoginBodySchema }), login);
 router.post("/logout", logout);
-router.post("/refresh", authLimiter, refreshAccessToken);
+router.post("/refresh", refreshAccessToken);
 
 export default router;
