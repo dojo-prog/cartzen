@@ -6,10 +6,10 @@ import {
   ShoppingCart,
 } from "lucide-react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { Button } from "../ui/button";
-import { Avatar, AvatarFallback } from "../ui/avatar";
+import { Button } from "../../ui/button";
+import { Avatar, AvatarFallback } from "../../ui/avatar";
 import { useCurrentUser } from "@/features/auth/hooks/useCurrentUser";
-import { Badge } from "../ui/badge";
+import { Badge } from "../../ui/badge";
 import { useCartItemCount } from "@/features/carts/hooks/useCartItemCount";
 import { useLogout } from "@/features/auth/hooks/useLogout";
 
