@@ -1,17 +1,23 @@
+import { useState } from "react";
 import { Outlet } from "react-router-dom";
+
 import Sidebar from "@/components/layout/admin/Sidebar";
 import Navbar from "@/components/layout/admin/Navbar";
 
 const AdminLayout = () => {
+  const [collapsed, setCollapsed] = useState(false);
+
   return (
     <div className="flex min-h-screen w-full bg-muted/20">
-      <Sidebar />
+      <Sidebar
+        collapsed={collapsed}
+        onToggle={() => setCollapsed((prev) => !prev)}
+      />
 
-      {/* Main */}
       <div className="flex min-w-0 flex-1 flex-col">
         <Navbar />
 
-        <main className="flex-1 overflow-auto p-6">
+        <main className="min-w-0 p-6">
           <Outlet />
         </main>
       </div>
