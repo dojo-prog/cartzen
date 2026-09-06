@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import errorMiddleware from "./middlewares/error.middleware";
 import cookieParser from "cookie-parser";
+import ENV from "./config/env";
 
 import { generalLimiter } from "./middlewares/rate.limit.middlewares";
 
@@ -16,7 +17,8 @@ import inventoryRouter from "./routers/inventory.routes";
 import cartItemRouter from "./routers/cart_item.routes";
 import orderRouter from "./routers/order.routes";
 import paymentRouter from "./routers/payment.routes";
-import ENV from "./config/env";
+
+import adminProductRouter from "./routers/admin/product.routes";
 
 const app = express();
 
@@ -47,6 +49,9 @@ app.use("/api/v1/products", inventoryRouter);
 app.use("/api/v1/cart/items", cartItemRouter);
 app.use("/api/v1/orders", orderRouter);
 app.use("/api/v1/", paymentRouter);
+
+// Admin Routers
+app.use("/api/v1/admin/products", adminProductRouter);
 
 // Error Handler
 app.use(errorMiddleware);
