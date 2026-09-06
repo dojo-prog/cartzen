@@ -1,5 +1,5 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { getAdminProducts } from "../api/product.api";
+import { getAdminProducts } from "../api/admin-product.api";
 import type { ProductQuery } from "@cartzen/shared";
 
 export const useAdminProducts = (params: ProductQuery) => {

@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { deleteProduct } from "../api/product.api";
+import { deleteProduct } from "../api/admin-product.api";
 import { toast } from "sonner";
 import { handleApiError } from "@/utils/handleApiError";
 
