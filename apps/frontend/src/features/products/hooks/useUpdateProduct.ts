@@ -26,7 +26,7 @@ export const useUpdateProduct = () => {
     onSuccess: (updated) => {
       queryClient.setQueriesData<InfiniteData<ProductsPage>>(
         {
-          queryKey: ["products"],
+          queryKey: ["admin-products"],
         },
         (old) => {
           if (!old) return old;

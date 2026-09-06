@@ -11,7 +11,7 @@ export const useDeleteProduct = () => {
 
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["products"],
+        queryKey: ["admin-products"],
       });
 
       toast.success("Product deleted");

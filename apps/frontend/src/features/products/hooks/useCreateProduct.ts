@@ -10,7 +10,7 @@ export const useCreateProduct = () => {
     mutationFn: createProduct,
 
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["products"] });
+      queryClient.invalidateQueries({ queryKey: ["admin-products"] });
       toast.success("Created new product");
     },
 
