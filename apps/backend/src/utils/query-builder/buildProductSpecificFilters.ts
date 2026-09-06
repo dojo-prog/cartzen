@@ -1,17 +1,57 @@
-import { ProductSpecificQuery } from "@cartzen/shared";
+import { ProductQuery } from "@cartzen/shared";
 
 interface BuildProductSpecificFiltersResult {
-  conditions: string[];
+  whereClause: string;
+  orderByClause: string;
+  limitClause: string;
+  offsetClause: string;
   values: unknown[];
 }
 
-const buildProductSpecificFilters = (
-  specificFilters: ProductSpecificQuery,
-): BuildProductSpecificFiltersResult => {
-  const { category, minPrice, maxPrice, inStock, featured } = specificFilters;
+interface Params {
+  filters: ProductQuery;
+  searchColumns?: string[];
+  baseCondition?: string[];
+  baseValues?: unknown[];
+}
 
-  const conditions: string[] = [];
-  const values: unknown[] = [];
+const buildProductSpecificFilters = ({
+  filters,
+  searchColumns = [],
+  baseCondition = [],
+  baseValues = [],
+}: Params): BuildProductSpecificFiltersResult => {
+  const {
+    category,
+    minPrice,
+    maxPrice,
+    inStock,
+    featured,
+    page,
+    limit,
+    sort,
+    search,
+  } = filters;
+
+  const conditions: string[] = [...baseCondition];
+  const values: unknown[] = [...baseValues];
+
+  let whereClause = "";
+  let orderByClause = "";
+  let limitClause = "";
+  let offsetClause = "";
+
+  // =======================================
+  // WHERE CLAUSE
+  // =======================================
+
+  if (search && searchColumns.length) {
+    values.push(`%${search}%`);
+    const searchConditions = searchColumns
+      .map((sc) => `${sc} ILIKE $${values.length}`)
+      .join(" AND ");
+    conditions.push(searchConditions);
+  }
 
   if (category) {
     values.push(category);
@@ -36,8 +76,43 @@ const buildProductSpecificFilters = (
     conditions.push("p.is_featured = true");
   }
 
+  if (conditions.length > 0) {
+    whereClause = `WHERE ${conditions.join(" AND ")}`;
+  }
+
+  // =======================================
+  // ORDER BY CLAUSE
+  // =======================================
+
+  const sortMap: Record<string, [string, "ASC" | "DESC"]> = {
+    newest: ["p.created_at", "DESC"],
+    oldest: ["p.created_at", "ASC"],
+    price_asc: ["p.price_cents", "ASC"],
+    price_desc: ["p.price_cents", "DESC"],
+  };
+
+  if (sort && sortMap[sort]) {
+    const [key, order] = sortMap[sort];
+
+    orderByClause = `ORDER BY ${key} IS NULL, ${key} ${order}`;
+  }
+
+  // =======================================
+  // LIMIT & OFFSET CLAUSE
+  // =======================================
+
+  if (page && limit) {
+    const offset = (page - 1) * limit;
+
+    limitClause = `LIMIT ${limit}`;
+    offsetClause = `OFFSET ${offset}`;
+  }
+
   return {
-    conditions,
+    whereClause,
+    orderByClause,
+    limitClause,
+    offsetClause,
     values,
   };
 };
