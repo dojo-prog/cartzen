@@ -6,6 +6,7 @@ interface MockProduct {
   weight_grams: number;
   initial_quantity: number;
   is_featured: boolean;
+  is_active: boolean;
   thumbnail_url?: string;
 }
 
@@ -19,6 +20,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 1000,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: true,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -31,6 +33,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1639427444459-85a1b6ac2d68?q=80&w=688&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -43,6 +46,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 250,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: true,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1576045057995-568f588f82fb?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -54,6 +58,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 250,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1552825897-bb5efa86eab1?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -68,6 +73,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: true,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1690983323540-d6e889c4b107?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -79,6 +85,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1623047437095-27418540c288?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -91,6 +98,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: true,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1604503468506-a8da13d82791?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -103,6 +111,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 400,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1624772398066-98584aa2f214?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -116,6 +125,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: true,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1672056777346-ec237198f34b?q=80&w=1278&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -128,6 +138,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1504309250229-4f08315f3b5c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -139,6 +150,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 250,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: true,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1499125562588-29fb8a56b5d5?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -152,6 +164,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 1000,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1550583724-b2692b85b150?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -164,6 +177,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 200,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: true,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1683314573422-649a3c6ad784?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -176,6 +190,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1571212515416-fef01fc43637?q=80&w=682&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -187,6 +202,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 600,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: true,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1506976785307-8732e854ad03?q=80&w=1043&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -200,6 +216,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 400,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1598373182308-3270495d2f58?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -211,6 +228,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 80,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: true,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1623334044303-241021148842?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -222,6 +240,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 800,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: true,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1586985289906-406988974504?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -235,6 +254,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 175,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1738618140037-09e11c8e644a?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -247,6 +267,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 180,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: true,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1738618140037-09e11c8e644a?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -258,6 +279,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 60,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1684011716915-e533f2cff14f?q=80&w=1237&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -270,6 +292,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1590060846796-0418842f3908?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -284,6 +307,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 5000,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: true,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1686820740687-426a7b9b2043?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -296,6 +320,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1612966893103-790e549a2ab1?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -308,6 +333,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 400,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1684011716915-e533f2cff14f?q=80&w=1237&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -320,6 +346,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1614373532018-92a75430a0da?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -334,6 +361,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 150,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: true,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1599490659213-e2b9527bd087?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -346,6 +374,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 200,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1577259261938-d3748e69b9aa?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -357,6 +386,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 100,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: true,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1627647227768-705244233b56?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -369,6 +399,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 150,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1666274694243-9997eb427237?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -383,6 +414,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 1500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1554866585-cd94860890b7?q=80&w=765&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -395,6 +427,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 1000,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: true,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1613478223719-2ab802602423?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -406,6 +439,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 1500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1548780607-46c78f38182d?q=80&w=1173&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -418,6 +452,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1741520504670-fe79bf6c476f?q=80&w=1189&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -432,6 +467,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 250,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: true,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1619615174792-a5edcfeafdfe?q=80&w=1025&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -443,6 +479,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 40,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1576092768241-dec231879fc3?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -454,6 +491,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 300,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1637572815755-c4b80092dce1?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -467,6 +505,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1611100369029-c0d5ddb80a51?q=80&w=1073&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -479,6 +518,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 470,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1562114808-b4b33cf60f4f?q=80&w=1173&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -491,6 +531,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1582581720432-de83a98176ab?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -503,6 +544,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1623870605527-fe47e6b24193?q=80&w=642&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -517,6 +559,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 1000,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?q=80&w=718&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -528,6 +571,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1630501439385-a55dada3f46b?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -539,6 +583,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 1000,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1610725664285-7c57e6eeac3f?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -551,6 +596,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 100,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1660728684136-0cdf1a0c2e02?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -565,6 +611,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1651383140368-9b3ee59c2981?q=80&w=737&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -577,6 +624,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1651383140368-9b3ee59c2981?q=80&w=737&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -588,6 +636,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 1000,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1570197788417-0e82375c9371?q=80&w=708&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -600,6 +649,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 400,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1713802611143-d14c927e2217?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -613,6 +663,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1506368197720-c242fdaa44dc?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -624,6 +675,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 400,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1586810504230-09dab6b8e01b?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -636,6 +688,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 340,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1615110250484-e8c3b151b957?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -650,6 +703,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 400,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1747858989102-cca0f4dc4a11?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -662,6 +716,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 400,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1669212408959-fdde3b2ed6a2?q=80&w=1025&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -673,6 +728,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 150,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1648729800687-7316ea086e8f?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -685,6 +741,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 50,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1728487893915-84f66d01fcfb?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -698,6 +755,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 700,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1583496597467-d968d2fa33a8?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -710,6 +768,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 300,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1665667111473-fcca0e8ea4f0?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -721,6 +780,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 900,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1653806347022-d40d152ca3a4?q=80&w=1178&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -735,6 +795,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 1500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1624372635310-01d078c05dd9?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -747,6 +808,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1643107303813-077f2061cec1?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -758,6 +820,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1740657254989-42fe9c3b8cce?q=80&w=1312&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -770,6 +833,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 500,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -784,6 +848,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 900,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1584839404042-8bc21d240e91?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -796,6 +861,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 250,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1521483451569-e33803c0330c?q=80&w=1085&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -807,6 +873,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 200,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1738892248232-a5fd26a98ec4?q=80&w=742&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -821,6 +888,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 2000,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1682536192307-c25211b1d4ac?q=80&w=688&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -833,6 +901,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 85,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1655210913315-e8147faf7600?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -845,6 +914,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 200,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1592468257342-8375cb556a69?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
@@ -857,6 +927,7 @@ const mockProducts: MockProduct[] = [
     weight_grams: 250,
     initial_quantity: Math.floor(Math.random() * 100) + 1,
     is_featured: false,
+    is_active: true,
     thumbnail_url:
       "https://images.unsplash.com/photo-1669281392832-9181a2b484af?q=80&w=1025&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
