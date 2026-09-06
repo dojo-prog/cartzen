@@ -1,8 +1,4 @@
-import {
-  useMutation,
-  useQueryClient,
-  type InfiniteData,
-} from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { updateProduct } from "../api/admin-product.api";
 import type { ProductWithRelations, UpdateProductBody } from "@cartzen/shared";
 import type { PaginatedResult } from "@/types/common";
@@ -23,25 +19,8 @@ export const useUpdateProduct = () => {
     mutationFn: ({ productId, body }: UpdateProductVariables) =>
       updateProduct(productId, body),
 
-    onSuccess: (updated) => {
-      queryClient.setQueriesData<InfiniteData<ProductsPage>>(
-        {
-          queryKey: ["admin-products"],
-        },
-        (old) => {
-          if (!old) return old;
-
-          return {
-            ...old,
-            pages: old.pages.map((page) => ({
-              ...page,
-              products: page.products.map((p) =>
-                p.id === updated.id ? updated : p,
-              ),
-            })),
-          };
-        },
-      );
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["admin-products"] });
 
       toast.success("Updated product");
     },

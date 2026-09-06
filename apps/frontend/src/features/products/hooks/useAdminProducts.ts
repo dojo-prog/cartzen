@@ -1,21 +1,11 @@
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { getAdminProducts } from "../api/admin-product.api";
-import type { ProductQuery } from "@cartzen/shared";
+import type { ProductQuery, ProductWithRelations } from "@cartzen/shared";
+import type { PaginatedResult } from "@/types/common";
 
 export const useAdminProducts = (params: ProductQuery) => {
-  return useInfiniteQuery({
-    queryKey: ["admin-products", params],
-    queryFn: ({ pageParam }) =>
-      getAdminProducts({ ...params, page: pageParam }),
-
-    initialPageParam: 1,
-
-    getNextPageParam: (lastPage) => {
-      const { page, total_pages } = lastPage?.pagination;
-
-      if (page >= total_pages) return undefined;
-
-      return page + 1;
-    },
+  return useQuery<PaginatedResult<"products", ProductWithRelations>>({
+    queryKey: ["admin-products"],
+    queryFn: () => getAdminProducts(params),
   });
 };
