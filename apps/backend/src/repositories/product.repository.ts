@@ -19,6 +19,38 @@ export const find = async (
     buildProductSpecificFilters({
       filters,
       searchColumns: ["p.name"],
+      baseCondition: ["p.is_active = true"],
+    });
+
+  const { rows } = await pool.query(
+    `
+    SELECT ${PRODUCT_RELATIONS_PROJECTION},
+      COUNT(*) OVER()::INT AS total
+    FROM products p
+    ${PRODUCT_JOINS}
+    ${whereClause}
+    ${orderByClause}
+    ${limitClause}
+    ${offsetClause}
+    `,
+    values,
+  );
+
+  const products = rows.map(({ total, ...product }) => product);
+
+  return {
+    products,
+    total: rows[0]?.total ?? 0,
+  };
+};
+
+export const findAdmin = async (
+  filters: ProductQuery,
+): Promise<{ products: ProductWithRelations[]; total: number }> => {
+  const { whereClause, orderByClause, limitClause, offsetClause, values } =
+    buildProductSpecificFilters({
+      filters,
+      searchColumns: ["p.name"],
     });
 
   const { rows } = await pool.query(
