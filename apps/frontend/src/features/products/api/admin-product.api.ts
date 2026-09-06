@@ -15,7 +15,7 @@ interface GetProductStatsResult {
 }
 
 export const getProductStats = async (): Promise<GetProductStatsResult> => {
-  const { data } = await api.get("/v1/products/stats");
+  const { data } = await api.get("/v1/admin/products/stats");
   return data.data;
 };
 
