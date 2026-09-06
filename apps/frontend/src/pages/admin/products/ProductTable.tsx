@@ -20,29 +20,31 @@ type Props = {
 const ProductTable = ({ products }: Props) => {
   return (
     <CardContent className="p-0">
-      <div
-        className="max-h-[calc(100vh-10rem)] overflow-auto"
-        style={{ scrollbarWidth: "thin" }}
-      >
-        <table className="w-full text-sm">
-          <thead className="sticky top-0 z-10 bg-background">
+      <div className="w-full">
+        <table className="w-full table-fixed text-sm">
+          <thead className="bg-background">
             <tr className="border-b bg-muted/30">
-              <th className="px-6 py-3 text-left font-medium text-muted-foreground">
+              <th className="w-[35%] px-6 py-3 text-left font-medium text-muted-foreground">
                 Product
               </th>
-              <th className="px-6 py-3 text-left font-medium text-muted-foreground">
+
+              <th className="w-[18%] px-6 py-3 text-left font-medium text-muted-foreground">
                 Category
               </th>
-              <th className="px-6 py-3 text-left font-medium text-muted-foreground">
+
+              <th className="w-[15%] px-6 py-3 text-left font-medium text-muted-foreground">
                 Price
               </th>
-              <th className="px-6 py-3 text-left font-medium text-muted-foreground">
+
+              <th className="w-[10%] px-6 py-3 text-left font-medium text-muted-foreground">
                 Stock
               </th>
-              <th className="px-6 py-3 text-left font-medium text-muted-foreground">
+
+              <th className="w-[15%] px-6 py-3 text-left font-medium text-muted-foreground">
                 Status
               </th>
-              <th className="w-12 px-6 py-3" />
+
+              <th className="w-[7%] px-6 py-3" />
             </tr>
           </thead>
 
@@ -54,11 +56,11 @@ const ProductTable = ({ products }: Props) => {
               return (
                 <tr
                   key={product.id}
-                  className="border-b last:border-0 transition-colors hover:bg-muted/30"
+                  className="border-b transition-colors last:border-0 hover:bg-muted/30"
                 >
                   {/* Product */}
                   <td className="px-6 py-4">
-                    <div className="flex items-center gap-3">
+                    <div className="flex min-w-0 items-center gap-3">
                       <div className="flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-muted">
                         {product.thumbnail_url ? (
                           <img
@@ -73,15 +75,16 @@ const ProductTable = ({ products }: Props) => {
 
                       <div className="min-w-0">
                         <p className="truncate font-medium">{product.name}</p>
-                        <p className="text-xs text-muted-foreground">
-                          #{product.id.padStart(6, "0")}
+
+                        <p className="truncate text-xs text-muted-foreground">
+                          #{product.id}
                         </p>
                       </div>
                     </div>
                   </td>
 
                   {/* Category */}
-                  <td className="px-6 py-4 text-muted-foreground">
+                  <td className="truncate px-6 py-4 text-muted-foreground">
                     {product.category.name}
                   </td>
 
@@ -106,13 +109,7 @@ const ProductTable = ({ products }: Props) => {
                   {/* Status */}
                   <td className="px-6 py-4">
                     <Badge
-                      variant={
-                        status === "Active"
-                          ? "default"
-                          : status === "Out of Stock"
-                            ? "destructive"
-                            : "secondary"
-                      }
+                      variant={status === "Active" ? "default" : "destructive"}
                     >
                       {status}
                     </Badge>
@@ -124,6 +121,7 @@ const ProductTable = ({ products }: Props) => {
                       <DropdownMenuTrigger>
                         <Button variant="ghost" size="icon" className="size-8">
                           <MoreHorizontal className="size-4" />
+
                           <span className="sr-only">Open product actions</span>
                         </Button>
                       </DropdownMenuTrigger>
