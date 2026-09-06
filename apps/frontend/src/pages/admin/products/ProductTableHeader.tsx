@@ -1,15 +1,27 @@
-import { Button } from "@/components/ui/button";
+import Pagination from "@/components/common/Pagination";
+import SearchInput from "@/components/common/SearchInput";
 import { CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input";
-import { ChevronDown, Search } from "lucide-react";
 
-const ProductTableHeader = () => {
+type Props = {
+  search: string;
+  onSearchChange: (value: string) => void;
+  pagination: {
+    page: number;
+    limit: number;
+    total: number;
+    total_pages: number;
+  };
+  onPageChange: (value: number) => void;
+};
+
+const ProductTableHeader = ({
+  search,
+  onSearchChange,
+  pagination,
+  onPageChange,
+}: Props) => {
+  const { page, total_pages } = pagination;
+
   return (
     <CardHeader className="border-b">
       <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
@@ -21,32 +33,17 @@ const ProductTableHeader = () => {
         </div>
 
         <div className="flex flex-col gap-2 sm:flex-row">
-          {/* Search */}
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+          <SearchInput
+            value={search}
+            onChange={onSearchChange}
+            placeholder="Search product name..."
+          />
 
-            <Input
-              placeholder="Search products..."
-              className="w-full pl-9 sm:w-64"
-            />
-          </div>
-
-          {/* Status filter */}
-          <DropdownMenu>
-            <DropdownMenuTrigger>
-              <Button variant="outline">
-                Status
-                <ChevronDown className="ml-2 size-4" />
-              </Button>
-            </DropdownMenuTrigger>
-
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem>All</DropdownMenuItem>
-              <DropdownMenuItem>Active</DropdownMenuItem>
-              <DropdownMenuItem>Inactive</DropdownMenuItem>
-              <DropdownMenuItem>Out of Stock</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <Pagination
+            page={page}
+            totalPages={total_pages}
+            onPageChange={onPageChange}
+          />
         </div>
       </div>
     </CardHeader>
