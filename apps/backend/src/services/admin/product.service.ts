@@ -48,13 +48,19 @@ export const createProduct = async (
     throw new AppError(400, `A product named ${payload.name} already exists`);
   }
 
-  const { initialQuantity: initial_quantity, ...rest } = payload;
-  const { subcategoryId, priceCents, weightGrams, isActive } = rest;
+  const {
+    initialQuantity: initial_quantity,
+    subcategoryId,
+    rawPrice,
+    weightGrams,
+    isActive,
+    ...rest
+  } = payload;
 
   const finalPayload: CreateProductData = {
     ...rest,
     subcategory_id: subcategoryId,
-    price_cents: priceCents,
+    price_cents: rawPrice * 100,
     weight_grams: weightGrams,
     is_active: isActive,
   };
@@ -90,12 +96,12 @@ export const updateProduct = async (
     throw new AppError(404, "Product not found");
   }
 
-  const { subcategoryId, priceCents, weightGrams, isActive } = payload;
+  const { subcategoryId, rawPrice, weightGrams, isActive } = payload;
 
   const mod: Partial<Product> = {
     ...payload,
     subcategory_id: subcategoryId,
-    price_cents: priceCents,
+    price_cents: rawPrice * 100,
     weight_grams: weightGrams,
     is_active: isActive,
   };
