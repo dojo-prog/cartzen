@@ -37,7 +37,7 @@ const buildProductSpecificFilters = ({
   const values: unknown[] = [...baseValues];
 
   let whereClause = "";
-  let orderByClause = "";
+  let orderByClause = "ORDER BY created_at DESC";
   let limitClause = "";
   let offsetClause = "";
 
