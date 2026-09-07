@@ -8,6 +8,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import DeleteProductDialog from "@/features/products/components/DeleteProductDialog";
 import UpdateProductDialog from "@/features/products/components/UpdateProductDialog";
 import { useToggleFeatured } from "@/features/products/hooks/useToggleFeatured";
 import { cn } from "@/lib/utils";
@@ -24,6 +25,9 @@ const ProductTable = ({ products }: Props) => {
   const { mutate: toggleFeatured, isPending } = useToggleFeatured();
 
   const [editingProduct, setEditingProduct] =
+    useState<ProductWithRelations | null>(null);
+
+  const [deletingProduct, setDeletingProduct] =
     useState<ProductWithRelations | null>(null);
 
   return (
@@ -181,7 +185,10 @@ const ProductTable = ({ products }: Props) => {
 
                           <DropdownMenuSeparator />
 
-                          <DropdownMenuItem className="text-destructive focus:text-destructive">
+                          <DropdownMenuItem
+                            onClick={() => setDeletingProduct(product)}
+                            className="text-destructive focus:text-destructive"
+                          >
                             Delete product
                           </DropdownMenuItem>
                         </DropdownMenuContent>
@@ -201,6 +208,16 @@ const ProductTable = ({ products }: Props) => {
           open={!!editingProduct}
           onOpenChange={(open) => {
             if (!open) setEditingProduct(null);
+          }}
+        />
+      )}
+
+      {deletingProduct && (
+        <DeleteProductDialog
+          product={deletingProduct}
+          open={!!deletingProduct}
+          onOpenChange={(open) => {
+            if (!open) setDeletingProduct(null);
           }}
         />
       )}
