@@ -19,6 +19,7 @@ import orderRouter from "./routers/order.routes";
 import paymentRouter from "./routers/payment.routes";
 
 import adminProductRouter from "./routers/admin/product.routes";
+import adminOrderRouter from "./routers/admin/order.routes";
 
 const app = express();
 
@@ -52,6 +53,7 @@ app.use("/api/v1/", paymentRouter);
 
 // Admin Routers
 app.use("/api/v1/admin/products", adminProductRouter);
+app.use("/api/v1/admin/orders", adminOrderRouter);
 
 // Error Handler
 app.use(errorMiddleware);

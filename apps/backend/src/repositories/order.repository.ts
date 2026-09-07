@@ -36,6 +36,37 @@ export const find = async (
   };
 };
 
+export const findAdmin = async (
+  filters: OrderQuery,
+): Promise<{ orders: Order[]; total: number }> => {
+  const { whereClause, limitClause, offsetClause, values } = buildFilterQueries(
+    filters,
+    [],
+    [],
+    ["id::text"],
+  );
+
+  const { rows } = await pool.query(
+    `
+    SELECT *,
+      COUNT(*) OVER()::INT AS total
+    FROM orders
+    ${whereClause}
+    ORDER BY created_at DESC
+    ${limitClause}
+    ${offsetClause}
+    `,
+    values,
+  );
+
+  const orders = rows.map(({ total, ...order }) => order);
+
+  return {
+    orders,
+    total: rows[0]?.total ?? 0,
+  };
+};
+
 export const findById = async (
   userId: string,
   orderId: string,
