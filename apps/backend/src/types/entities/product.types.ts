@@ -21,7 +21,7 @@ export interface BaseProductPayload {
   subcategoryId: string;
   name: string;
   description: string;
-  priceCents: number;
+  rawPrice: number;
   currency: string;
   weightGrams: number;
   isActive?: boolean | undefined;

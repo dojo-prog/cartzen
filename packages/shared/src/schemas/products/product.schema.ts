@@ -41,7 +41,7 @@ export const WeightGramsSchema = z.coerce
   .int({ message: "Weight must be a whole number" })
   .nonnegative({ message: "Weight cannot be negative" });
 
-export const IsActiveSchema = z.boolean().default(false);
+export const IsActiveSchema = z.coerce.boolean().default(false);
 
 export const IsFeaturedSchema = z.boolean().default(false);
 

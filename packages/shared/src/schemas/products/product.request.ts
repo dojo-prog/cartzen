@@ -52,10 +52,12 @@ const ProductBaseBodySchema = z.object({
   subcategoryId: UUIDSchema,
   name: ProductNameSchema,
   description: ProductDescriptionSchema,
-  priceCents: PriceCentsSchema,
+  rawPrice: z.coerce
+    .number({ message: "Price must be a number" })
+    .nonnegative({ message: "Price cannot be less than 0" }),
   currency: CurrencySchema.optional().default("PHP"),
   weightGrams: WeightGramsSchema,
-  is_active: IsActiveSchema.optional(),
+  isActive: IsActiveSchema.optional(),
   initialQuantity: NonNegativeIntSchema.optional(),
 });
 
