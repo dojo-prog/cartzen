@@ -28,9 +28,24 @@ export const getAdminProducts = async (
 };
 
 export const createProduct = async (
-  body: CreateProductBody,
+  body: CreateProductBody & { thumbnail?: File },
 ): Promise<ProductWithRelations> => {
-  const { data } = await api.post(`/v1/admin/products`, body);
+  const formData = new FormData();
+
+  formData.append("name", body.name);
+  formData.append("description", body.description);
+  formData.append("subcategoryId", body.subcategoryId);
+  formData.append("rawPrice", String(body.rawPrice));
+  formData.append("currency", body.currency);
+  formData.append("weightGrams", String(body.weightGrams));
+  formData.append("isActive", String(body.isActive));
+  formData.append("initialQuantity", String(body.initialQuantity));
+
+  if (body.thumbnail) {
+    formData.append("thumbnail", body.thumbnail);
+  }
+
+  const { data } = await api.post(`/v1/admin/products`, formData);
 
   return data.data.product;
 };
