@@ -1,5 +1,4 @@
-import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
+import AddProductButton from "@/features/products/components/AddProductButton";
 
 const Header = () => {
   return (
@@ -11,10 +10,7 @@ const Header = () => {
         </p>
       </div>
 
-      <Button size={"lg"}>
-        <Plus className="mr-2 size-4" />
-        Add Product
-      </Button>
+      <AddProductButton />
     </div>
   );
 };

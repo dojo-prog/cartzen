@@ -49,7 +49,10 @@ export const ProductQuerySchema = z
 // =======================================
 
 const ProductBaseBodySchema = z.object({
-  subcategoryId: UUIDSchema,
+  subcategoryId: z
+    .string()
+    .min(1, { message: "Subcategory is required" })
+    .uuid({ message: "Invalid UUID format" }),
   name: ProductNameSchema,
   description: ProductDescriptionSchema,
   rawPrice: z.coerce
