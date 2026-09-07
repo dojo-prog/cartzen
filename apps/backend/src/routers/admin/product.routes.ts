@@ -15,9 +15,11 @@ import {
   deleteProduct,
   getProducts,
   getProductStats,
+  toggleFeatured,
   updateProduct,
 } from "../../controllers/admin/product.controller";
 import multerUpload from "../../middlewares/multer.middleware";
+import { writeLimiter } from "../../middlewares/rate.limit.middlewares";
 
 const router = express.Router();
 
@@ -41,5 +43,12 @@ router
     updateProduct,
   )
   .delete(validate({ params: ProductIdParamsSchema }), deleteProduct);
+
+router.patch(
+  "/:productId/featured",
+  writeLimiter,
+  validate({ params: ProductIdParamsSchema }),
+  toggleFeatured,
+);
 
 export default router;

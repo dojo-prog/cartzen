@@ -175,3 +175,9 @@ export const deleteProduct = async (
 export const getProductStats = async (): Promise<GetProductStatsResult> => {
   return productRepository.findStats();
 };
+
+export const toggleFeatured = async (
+  productId: string,
+): Promise<ProductWithRelations> => {
+  return productRepository.toggleFeatured(productId);
+};

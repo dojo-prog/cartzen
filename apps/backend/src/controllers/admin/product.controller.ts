@@ -70,3 +70,15 @@ export const deleteProduct: Controller = async (req, res, next) => {
     next(error);
   }
 };
+
+export const toggleFeatured: Controller = async (req, res, next) => {
+  try {
+    const product = await productService.toggleFeatured(
+      req.params.productId as string,
+    );
+
+    res.status(200).json({ success: true, data: { product } });
+  } catch (error) {
+    next(error);
+  }
+};

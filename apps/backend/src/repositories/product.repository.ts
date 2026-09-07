@@ -180,3 +180,18 @@ export const findStats = async (): Promise<GetProductStatsResult> => {
 
   return rows[0];
 };
+
+export const toggleFeatured = async (
+  productId: string,
+): Promise<ProductWithRelations> => {
+  const { rows } = await pool.query(
+    `
+    UPDATE products
+    SET is_featured = NOT is_featured
+    WHERE id = $1
+    `,
+    [productId],
+  );
+
+  return findWithRelationsById(productId);
+};

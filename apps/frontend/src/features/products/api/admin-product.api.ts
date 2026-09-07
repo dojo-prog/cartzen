@@ -66,3 +66,11 @@ export const deleteProduct = async (
 
   return data.data.product;
 };
+
+export const toggleFeatured = async (
+  productId: string,
+): Promise<ProductWithRelations> => {
+  const { data } = await api.patch(`/v1/admin/products/${productId}/featured`);
+
+  return data.data.product;
+};
