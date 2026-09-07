@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import DeleteProductDialog from "@/features/products/components/DeleteProductDialog";
 import UpdateProductDialog from "@/features/products/components/UpdateProductDialog";
+import ViewProductDialog from "@/features/products/components/ViewProductDialog";
 import { useToggleFeatured } from "@/features/products/hooks/useToggleFeatured";
 import { cn } from "@/lib/utils";
 import { formatPrice } from "@/utils/formatPrice";
@@ -25,6 +26,9 @@ const ProductTable = ({ products }: Props) => {
   const { mutate: toggleFeatured, isPending } = useToggleFeatured();
 
   const [editingProduct, setEditingProduct] =
+    useState<ProductWithRelations | null>(null);
+
+  const [viewingProduct, setViewingProduct] =
     useState<ProductWithRelations | null>(null);
 
   const [deletingProduct, setDeletingProduct] =
@@ -181,7 +185,11 @@ const ProductTable = ({ products }: Props) => {
                             Edit Product
                           </DropdownMenuItem>
 
-                          <DropdownMenuItem>View product</DropdownMenuItem>
+                          <DropdownMenuItem
+                            onClick={() => setViewingProduct(product)}
+                          >
+                            View product
+                          </DropdownMenuItem>
 
                           <DropdownMenuSeparator />
 
@@ -208,6 +216,16 @@ const ProductTable = ({ products }: Props) => {
           open={!!editingProduct}
           onOpenChange={(open) => {
             if (!open) setEditingProduct(null);
+          }}
+        />
+      )}
+
+      {viewingProduct && (
+        <ViewProductDialog
+          product={viewingProduct}
+          open={!!viewingProduct}
+          onOpenChange={(open) => {
+            if (!open) setViewingProduct(null);
           }}
         />
       )}
