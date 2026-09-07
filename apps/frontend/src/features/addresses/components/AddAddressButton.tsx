@@ -23,7 +23,7 @@ const AddAddressButton = () => {
         }
       />
 
-      <DialogContent>
+      <DialogContent className={"w-lg"}>
         <DialogTitle className={"text-lg font-semibold"}>
           Add Shipping Address
         </DialogTitle>
