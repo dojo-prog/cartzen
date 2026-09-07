@@ -8,9 +8,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useToggleFeatured } from "@/features/products/hooks/useToggleFeatured";
+import { cn } from "@/lib/utils";
 import { formatPrice } from "@/utils/formatPrice";
 import type { ProductWithRelations } from "@cartzen/shared";
-import { MoreHorizontal, Package } from "lucide-react";
+import { MoreHorizontal, Package, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 
 type Props = {
@@ -18,6 +20,8 @@ type Props = {
 };
 
 const ProductTable = ({ products }: Props) => {
+  const { mutate: toggleFeatured, isPending } = useToggleFeatured();
+
   return (
     <CardContent className="p-0">
       <div className="w-full">
@@ -44,6 +48,10 @@ const ProductTable = ({ products }: Props) => {
                 Status
               </th>
 
+              <th className="w-[15%] px-6 py-3 text-left font-medium text-muted-foreground">
+                Featured
+              </th>
+
               <th className="w-[7%] px-6 py-3" />
             </tr>
           </thead>
@@ -51,7 +59,11 @@ const ProductTable = ({ products }: Props) => {
           <tbody>
             {products.map((product) => {
               const status =
-                product.stock_quantity > 0 ? "Active" : "Out of Stock";
+                product.stock_quantity > 0
+                  ? product.is_active
+                    ? "Active"
+                    : "Inactive"
+                  : "Out of Stock";
 
               return (
                 <tr
@@ -109,10 +121,31 @@ const ProductTable = ({ products }: Props) => {
                   {/* Status */}
                   <td className="px-6 py-4">
                     <Badge
-                      variant={status === "Active" ? "default" : "destructive"}
+                      variant={
+                        status === "Active"
+                          ? "default"
+                          : status === "Inactive"
+                            ? "outline"
+                            : "destructive"
+                      }
                     >
                       {status}
                     </Badge>
+                  </td>
+
+                  <td className="px-6 py-4">
+                    <Button
+                      onClick={() => toggleFeatured(product.id)}
+                      className={cn(
+                        "w-10 h-10 rounded-full flex items-center justify-center",
+                        product.is_featured
+                          ? "bg-primary text-primary-foreground"
+                          : "bg-secondary hover:bg-gray-200 border text-gray-400",
+                      )}
+                      disabled={isPending}
+                    >
+                      <Star className="size-5" />
+                    </Button>
                   </td>
 
                   {/* Actions */}
