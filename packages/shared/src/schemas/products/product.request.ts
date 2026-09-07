@@ -1,5 +1,6 @@
 import { z } from "zod";
 import {
+  FormBoolean,
   NonNegativeIntSchema,
   PaginationQuerySchema,
   SearchQuerySchema,
@@ -60,13 +61,15 @@ const ProductBaseBodySchema = z.object({
     .nonnegative({ message: "Price cannot be less than 0" }),
   currency: CurrencySchema.optional().default("PHP"),
   weightGrams: WeightGramsSchema,
-  isActive: IsActiveSchema.optional(),
+  isActive: FormBoolean,
   initialQuantity: NonNegativeIntSchema.optional(),
 });
 
 export const CreateProductBodySchema = ProductBaseBodySchema;
 
-export const UpdateProductBodySchema = ProductBaseBodySchema;
+export const UpdateProductBodySchema = ProductBaseBodySchema.omit({
+  initialQuantity: true,
+});
 
 // =======================================
 // TYPES
