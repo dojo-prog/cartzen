@@ -7,7 +7,7 @@ import { handleApiError } from "@/utils/handleApiError";
 
 type UpdateProductVariables = {
   productId: string;
-  body: UpdateProductBody;
+  body: UpdateProductBody & { thumbnail?: File };
 };
 
 export type ProductsPage = PaginatedResult<"products", ProductWithRelations>;

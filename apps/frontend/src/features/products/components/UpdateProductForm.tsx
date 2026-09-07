@@ -9,50 +9,74 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
-
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { X, ImagePlus } from "lucide-react";
 import {
-  CreateProductBodySchema,
-  type CreateProductBody,
+  UpdateProductBodySchema,
+  type ProductWithRelations,
+  type UpdateProductBody,
 } from "@cartzen/shared";
 import { useAllSubcategories } from "@/features/subcategories/hooks/useAllSubcategories";
-import { useCreateProduct } from "../hooks/useCreateProduct";
+import { useUpdateProduct } from "../hooks/useUpdateProduct";
 import ButtonLoading from "@/components/common/ButtonLoading";
 import { FieldError } from "@/components/ui/field";
+import { useForm } from "react-hook-form";
 
 type Props = {
+  product: ProductWithRelations;
   onSuccess: () => void;
 };
 
-const AddProductForm = ({ onSuccess }: Props) => {
+const UpdateProductForm = ({ product, onSuccess }: Props) => {
   const { data: subcategories } = useAllSubcategories();
-
-  const { mutate: createProduct, isPending } = useCreateProduct();
+  const { mutate: updateProduct, isPending } = useUpdateProduct();
 
   const [thumbnail, setThumbnail] = useState<File | undefined>();
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(
+    product.thumbnail_url ?? null,
+  );
 
   const form = useForm({
-    resolver: zodResolver(CreateProductBodySchema),
+    resolver: zodResolver(UpdateProductBodySchema),
 
     defaultValues: {
-      subcategoryId: "",
-      name: "",
-      description: "",
-      rawPrice: 0,
-      currency: "PHP",
-      weightGrams: 0,
-      isActive: "true",
-      initialQuantity: 0,
+      subcategoryId: product.subcategory.id,
+      name: product.name,
+      description: product.description,
+      rawPrice: product.price_cents / 100,
+      currency: product.currency,
+      weightGrams: product.weight_grams,
+      isActive: product.is_active ? "true" : "false",
     },
   });
 
   const isActive = form.watch("isActive");
   const currency = form.watch("currency");
   const subcategoryId = form.watch("subcategoryId");
+
+  useEffect(() => {
+    form.reset({
+      subcategoryId: product.subcategory.id,
+      name: product.name,
+      description: product.description,
+      rawPrice: product.price_cents / 100,
+      currency: product.currency,
+      weightGrams: product.weight_grams,
+      isActive: product.is_active ? "true" : "false",
+    });
+
+    setThumbnail(undefined);
+    setPreviewUrl(product.thumbnail_url ?? null);
+  }, [product, form]);
+
+  useEffect(() => {
+    return () => {
+      if (previewUrl?.startsWith("blob:")) {
+        URL.revokeObjectURL(previewUrl);
+      }
+    };
+  }, [previewUrl]);
 
   const handleThumbnailChange = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -61,18 +85,16 @@ const AddProductForm = ({ onSuccess }: Props) => {
 
     if (!file) return;
 
-    setThumbnail(file);
-
-    if (previewUrl) {
+    if (previewUrl?.startsWith("blob:")) {
       URL.revokeObjectURL(previewUrl);
     }
 
-    const url = URL.createObjectURL(file);
-    setPreviewUrl(url);
+    setThumbnail(file);
+    setPreviewUrl(URL.createObjectURL(file));
   };
 
   const removeThumbnail = () => {
-    if (previewUrl) {
+    if (previewUrl?.startsWith("blob:")) {
       URL.revokeObjectURL(previewUrl);
     }
 
@@ -80,11 +102,14 @@ const AddProductForm = ({ onSuccess }: Props) => {
     setPreviewUrl(null);
   };
 
-  const onSubmit = (data: CreateProductBody) => {
-    createProduct(
-      { ...data, thumbnail },
+  const onSubmit = (data: UpdateProductBody) => {
+    updateProduct(
       {
-        onSuccess: onSuccess,
+        productId: product.id,
+        body: { ...data, thumbnail },
+      },
+      {
+        onSuccess,
       },
     );
   };
@@ -95,9 +120,8 @@ const AddProductForm = ({ onSuccess }: Props) => {
       <div className="space-y-6">
         <div>
           <h2 className="text-base font-semibold">Product Information</h2>
-
           <p className="text-sm text-muted-foreground">
-            Enter the basic information for your product.
+            Update the basic information for your product.
           </p>
         </div>
 
@@ -132,7 +156,7 @@ const AddProductForm = ({ onSuccess }: Props) => {
           <FieldError errors={[form.formState.errors.description]} />
         </div>
 
-        {/* Category */}
+        {/* Subcategory */}
         <div className="space-y-2">
           <label className="text-sm font-medium">Subcategory</label>
 
@@ -140,25 +164,27 @@ const AddProductForm = ({ onSuccess }: Props) => {
             value={subcategoryId}
             onValueChange={(value) => {
               if (!value) return;
+
               form.setValue("subcategoryId", value, {
                 shouldValidate: true,
+                shouldDirty: true,
               });
             }}
           >
             <SelectTrigger className="w-full">
               <SelectValue>
-                {subcategories?.find((sc) => sc.id === subcategoryId)?.name ??
-                  "Select a subcategory"}
+                {subcategories?.find(
+                  (subcategory) => subcategory.id === subcategoryId,
+                )?.name ?? product.subcategory.name}
               </SelectValue>
             </SelectTrigger>
 
             <SelectContent>
-              {subcategories &&
-                subcategories.map((subcategory) => (
-                  <SelectItem key={subcategory.id} value={subcategory.id}>
-                    {subcategory.name}
-                  </SelectItem>
-                ))}
+              {subcategories?.map((subcategory) => (
+                <SelectItem key={subcategory.id} value={subcategory.id}>
+                  {subcategory.name}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
 
@@ -172,7 +198,7 @@ const AddProductForm = ({ onSuccess }: Props) => {
           <h2 className="text-base font-semibold">Pricing & Inventory</h2>
 
           <p className="text-sm text-muted-foreground">
-            Configure pricing, weight, and initial stock.
+            Configure pricing and product weight.
           </p>
         </div>
 
@@ -188,7 +214,11 @@ const AddProductForm = ({ onSuccess }: Props) => {
                 value={currency}
                 onValueChange={(value) => {
                   if (!value) return;
-                  form.setValue("currency", value);
+
+                  form.setValue("currency", value, {
+                    shouldValidate: true,
+                    shouldDirty: true,
+                  });
                 }}
               >
                 <SelectTrigger className="w-24 shrink-0">
@@ -207,9 +237,12 @@ const AddProductForm = ({ onSuccess }: Props) => {
                 min="0"
                 step="1"
                 placeholder="0"
-                {...form.register("rawPrice")}
+                {...form.register("rawPrice", {
+                  valueAsNumber: true,
+                })}
               />
             </div>
+
             <FieldError errors={[form.formState.errors.rawPrice]} />
           </div>
 
@@ -225,28 +258,12 @@ const AddProductForm = ({ onSuccess }: Props) => {
               min="0"
               step="1"
               placeholder="0"
-              {...form.register("weightGrams")}
+              {...form.register("weightGrams", {
+                valueAsNumber: true,
+              })}
             />
 
             <FieldError errors={[form.formState.errors.weightGrams]} />
-          </div>
-
-          {/* Initial Quantity */}
-          <div className="space-y-2">
-            <label htmlFor="initialQuantity" className="text-sm font-medium">
-              Initial Quantity
-            </label>
-
-            <Input
-              id="initialQuantity"
-              type="number"
-              min="0"
-              step="1"
-              placeholder="0"
-              {...form.register("initialQuantity")}
-            />
-
-            <FieldError errors={[form.formState.errors.initialQuantity]} />
           </div>
         </div>
       </div>
@@ -257,7 +274,7 @@ const AddProductForm = ({ onSuccess }: Props) => {
           <h2 className="text-base font-semibold">Product Thumbnail</h2>
 
           <p className="text-sm text-muted-foreground">
-            Upload an image to represent your product.
+            Upload a new image to replace the current thumbnail.
           </p>
         </div>
 
@@ -327,7 +344,10 @@ const AddProductForm = ({ onSuccess }: Props) => {
           <Switch
             checked={isActive === "true"}
             onCheckedChange={(checked) =>
-              form.setValue("isActive", checked ? "true" : "false")
+              form.setValue("isActive", checked ? "true" : "false", {
+                shouldValidate: true,
+                shouldDirty: true,
+              })
             }
           />
         </div>
@@ -338,18 +358,27 @@ const AddProductForm = ({ onSuccess }: Props) => {
         <Button
           type="button"
           variant="outline"
-          onClick={() => form.reset()}
+          onClick={() => {
+            form.reset();
+            setThumbnail(undefined);
+
+            if (previewUrl?.startsWith("blob:")) {
+              URL.revokeObjectURL(previewUrl);
+            }
+
+            setPreviewUrl(product.thumbnail_url ?? null);
+          }}
           disabled={isPending}
         >
           Reset
         </Button>
 
         <Button type="submit" disabled={isPending}>
-          <ButtonLoading btnTitle="Create Product" isLoading={isPending} />
+          <ButtonLoading btnTitle="Update Product" isLoading={isPending} />
         </Button>
       </div>
     </form>
   );
 };
 
-export default AddProductForm;
+export default UpdateProductForm;

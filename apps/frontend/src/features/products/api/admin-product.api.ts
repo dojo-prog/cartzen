@@ -52,9 +52,23 @@ export const createProduct = async (
 
 export const updateProduct = async (
   productId: string,
-  body: UpdateProductBody,
+  body: UpdateProductBody & { thumbnail?: File },
 ): Promise<ProductWithRelations> => {
-  const { data } = await api.patch(`/v1/admin/products/${productId}`, body);
+  const formData = new FormData();
+
+  formData.append("name", body.name);
+  formData.append("description", body.description);
+  formData.append("subcategoryId", body.subcategoryId);
+  formData.append("rawPrice", String(body.rawPrice));
+  formData.append("currency", body.currency);
+  formData.append("weightGrams", String(body.weightGrams));
+  formData.append("isActive", String(body.isActive));
+
+  if (body.thumbnail) {
+    formData.append("thumbnail", body.thumbnail);
+  }
+
+  const { data } = await api.patch(`/v1/admin/products/${productId}`, formData);
 
   return data.data.product;
 };
