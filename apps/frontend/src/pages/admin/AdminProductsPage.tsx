@@ -16,8 +16,6 @@ const AdminProductsPage = () => {
   });
   const { page, limit, search } = filters;
 
-  console.log(page);
-
   const debouncedSearch = useDebounce(search);
 
   const {
