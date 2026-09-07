@@ -17,6 +17,7 @@ import {
   getProductStats,
   updateProduct,
 } from "../../controllers/admin/product.controller";
+import multerUpload from "../../middlewares/multer.middleware";
 
 const router = express.Router();
 
@@ -25,7 +26,11 @@ router.use(protectRoute, authorizeRoles(["admin"]));
 router
   .route("/")
   .get(validate({ query: ProductQuerySchema }), getProducts)
-  .post(validate({ body: CreateProductBodySchema }), createProduct);
+  .post(
+    multerUpload.single("thumbnail"),
+    validate({ body: CreateProductBodySchema }),
+    createProduct,
+  );
 
 router.get("/stats", getProductStats);
 
