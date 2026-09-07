@@ -39,6 +39,7 @@ router.get("/stats", getProductStats);
 router
   .route("/:productId")
   .patch(
+    multerUpload.single("thumbnail"),
     validate({ params: ProductIdParamsSchema, body: UpdateProductBodySchema }),
     updateProduct,
   )
