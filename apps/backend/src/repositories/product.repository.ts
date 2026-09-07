@@ -147,7 +147,8 @@ export const update = async (
   await pool.query(
     `
     UPDATE products
-    ${setClause}
+    ${setClause},
+      updated_at = now()
     WHERE id = $${values.length}
     `,
     values,
