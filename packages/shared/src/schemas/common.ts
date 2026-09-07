@@ -65,3 +65,7 @@ export const LongitudeSchema = z
 export const ImageUrlSchema = z.string().url({ message: "Invalid URL format" });
 
 export const ImagePublicIdSchema = z.string().min(1);
+
+export const FormBoolean = z
+  .enum(["true", "false"])
+  .transform((value) => value === "true");
