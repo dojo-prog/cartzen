@@ -96,10 +96,10 @@ export const updateProduct = async (
     throw new AppError(404, "Product not found");
   }
 
-  const { subcategoryId, rawPrice, weightGrams, isActive } = payload;
+  const { subcategoryId, rawPrice, weightGrams, isActive, ...rest } = payload;
 
   const mod: Partial<Product> = {
-    ...payload,
+    ...rest,
     subcategory_id: subcategoryId,
     price_cents: rawPrice * 100,
     weight_grams: weightGrams,
@@ -142,6 +142,8 @@ export const updateProduct = async (
   if (Object.keys(new_values).length === 0) {
     throw new AppError(400, "No changes have been made");
   }
+
+  await productRepository.update(productId, new_values);
 
   const updated = await productRepository.findWithRelationsById(productId);
 
