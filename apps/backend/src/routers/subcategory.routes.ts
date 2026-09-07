@@ -15,6 +15,7 @@ import { authorizeRoles, protectRoute } from "../middlewares/auth.middleware";
 import {
   createSubcategory,
   deleteSubcategory,
+  getAllSubcategories,
   getSubcategories,
   getSubcategoryBySlug,
   updateSubcategory,
@@ -25,6 +26,8 @@ import {
 } from "../middlewares/rate.limit.middlewares";
 
 const router = express.Router();
+
+router.get("/subcategories/all", getAllSubcategories);
 
 router.route("/:categorySlug/subcategories").get(
   readLimiter,

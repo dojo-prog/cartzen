@@ -15,6 +15,16 @@ export const getSubcategories: Controller = async (req, res, next) => {
   }
 };
 
+export const getAllSubcategories: Controller = async (req, res, next) => {
+  try {
+    const subcategories = await subcategoryService.getAllSubcategories();
+
+    res.status(200).json({ success: true, data: { subcategories } });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const createSubcategory: Controller = async (req, res, next) => {
   try {
     const subcategory = await subcategoryService.createSubcategory({

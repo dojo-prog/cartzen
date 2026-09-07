@@ -50,6 +50,12 @@ export const getSubcategories = async (
   };
 };
 
+export const getAllSubcategories = async (): Promise<
+  Partial<Subcategory>[]
+> => {
+  return await subcategoryRepository.findAll();
+};
+
 export const createSubcategory = async (
   params: CreateSubcategoryParams,
 ): Promise<Subcategory> => {

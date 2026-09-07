@@ -36,6 +36,18 @@ export const find = async (
   };
 };
 
+export const findAll = async (): Promise<Partial<Subcategory>[]> => {
+  const { rows } = await pool.query(
+    `
+    SELECT id, name, slug
+    FROM subcategories 
+    ORDER BY name ASC
+    `,
+  );
+
+  return rows;
+};
+
 export const findById = async (
   categoryId: string,
   subcategoryId: string,

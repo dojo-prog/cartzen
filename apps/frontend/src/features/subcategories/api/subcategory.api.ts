@@ -20,6 +20,14 @@ export const getSubcategories = async (
   return data.data;
 };
 
+export const getAllSubcategories = async (): Promise<
+  Partial<Subcategory>[]
+> => {
+  const { data } = await api.get("/v1/categories/subcategories/all");
+
+  return data.data.subcategories;
+};
+
 export const getSubcategory = async (
   categorySlug: string,
   subcatgorySlug: string,
