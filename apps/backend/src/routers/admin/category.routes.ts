@@ -13,6 +13,12 @@ import {
   UpdateCategoryBodySchema,
 } from "@cartzen/shared";
 import validate from "../../middlewares/validation.middleware";
+import {
+  createCategory,
+  deleteCategory,
+  getCategories,
+  updateCategory,
+} from "../../controllers/admin/category.controller";
 
 const router = express.Router();
 
