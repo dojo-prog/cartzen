@@ -7,8 +7,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import AddCategoryButton from "@/features/categories/components/AddCategoryButton";
 import type { Category } from "@cartzen/shared";
-import { Pencil, Plus, Trash2 } from "lucide-react";
+import { Pencil, Trash2 } from "lucide-react";
 
 type Props = {
   categories: Category[];
@@ -75,10 +76,7 @@ const CategoryTable = ({ categories }: Props) => {
       </Table>
 
       <div className="border-t p-3">
-        <Button variant="outline" size="sm">
-          <Plus className="mr-2 size-4" />
-          Add Category
-        </Button>
+        <AddCategoryButton />
       </div>
     </div>
   );
