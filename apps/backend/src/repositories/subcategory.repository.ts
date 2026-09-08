@@ -104,7 +104,7 @@ export const findWithRelationsById = async (
     SELECT ${SUBCATEGORY_RELATIONS_PROJECTION}
     FROM subcategories sc
     ${SUBCATEGORY_JOINS}
-    WHERE id = $1
+    WHERE sc.id = $1
     `,
     [subcategoryId],
   );
