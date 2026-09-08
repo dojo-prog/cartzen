@@ -1,6 +1,6 @@
 import { PoolClient } from "pg";
 import pool from "../database/db";
-import { Order, OrderQuery } from "@cartzen/shared";
+import { Order, OrderQuery, OrderStatus } from "@cartzen/shared";
 import buildFilterQueries from "../utils/query-builder/buildFilterQueries";
 import buildInsertQueries from "../utils/query-builder/buildInsertQueries";
 import { CreateOrderData } from "../types/entities/order.types";
@@ -86,6 +86,18 @@ export const findById = async (
   return rows[0];
 };
 
+export const findAdminById = async (orderId: string): Promise<Order> => {
+  const { rows } = await pool.query(
+    `
+    SELECT * FROM orders
+    WHERE id = $1
+    `,
+    [orderId],
+  );
+
+  return rows[0];
+};
+
 export const create = async (
   client: PoolClient,
   payload: CreateOrderData,
@@ -140,6 +152,28 @@ export const cancel = async (
     RETURNING *
     `,
     [orderId],
+  );
+
+  return rows[0];
+};
+
+export const advanceStatus = async (
+  orderId: string,
+  nextStatus: OrderStatus,
+  timestamp: string,
+  client?: PoolClient,
+): Promise<Order> => {
+  const conn = client ? client : pool;
+
+  const { rows } = await conn.query(
+    `
+    UPDATE orders
+    SET status = $1,
+      ${timestamp} = now()
+    WHERE id = $2
+    RETURNING * 
+    `,
+    [nextStatus, orderId],
   );
 
   return rows[0];

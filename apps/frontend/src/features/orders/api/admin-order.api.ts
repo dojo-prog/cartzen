@@ -9,3 +9,11 @@ export const getAdminOrders = async (
 
   return data.data;
 };
+
+export const advanceOrderStatus = async (
+  orderId: string,
+): Promise<OrderWithItems> => {
+  const { data } = await api.post(`/v1/admin/orders/${orderId}/status`);
+
+  return data.data.order;
+};

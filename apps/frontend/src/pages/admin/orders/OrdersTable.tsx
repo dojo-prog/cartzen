@@ -15,10 +15,12 @@ import {
 import { formatPrice } from "@/utils/formatPrice";
 import { formatDate } from "@/utils/formatDate";
 import OrdersTableEmpty from "./OrdersTableEmpty";
-import { getOrderStatusVariant } from "@/utils/getOrderStatusVariant";
 import { formatStatus } from "@/utils/formatStatus";
 import { useState } from "react";
 import ViewOrderDialog from "@/features/orders/components/ViewOrderDialog";
+import AdvanceStatusDialog from "@/features/orders/components/AdvanceStatusDialog";
+import { getStatusConfig } from "@/utils/getStatusConfig";
+import { cn } from "@/lib/utils";
 
 type Props = {
   orders: OrderWithItems[];
@@ -26,6 +28,8 @@ type Props = {
 
 const OrdersTable = ({ orders }: Props) => {
   const [viewingOrder, setViewingOrder] = useState<OrderWithItems | null>(null);
+  const [advancingOrderStatus, setAdvancingOrderStatus] =
+    useState<OrderWithItems | null>(null);
 
   return (
     <>
@@ -68,6 +72,8 @@ const OrdersTable = ({ orders }: Props) => {
                   (total, item) => total + item.quantity,
                   0,
                 );
+
+                const statusStyles = getStatusConfig(order.status).className;
 
                 return (
                   <tr
@@ -124,7 +130,7 @@ const OrdersTable = ({ orders }: Props) => {
 
                     {/* Status */}
                     <td className="px-6 py-4">
-                      <Badge variant={getOrderStatusVariant(order.status)}>
+                      <Badge className={cn(statusStyles)}>
                         {formatStatus(order.status)}
                       </Badge>
                     </td>
@@ -163,11 +169,25 @@ const OrdersTable = ({ orders }: Props) => {
                             View order
                           </DropdownMenuItem>
 
-                          <DropdownMenuItem>Update status</DropdownMenuItem>
+                          {order.status !== "delivered" &&
+                            order.status !== "cancelled" && (
+                              <DropdownMenuItem
+                                onClick={() => setAdvancingOrderStatus(order)}
+                              >
+                                Update status
+                              </DropdownMenuItem>
+                            )}
 
-                          <DropdownMenuSeparator />
+                          {order.status !== "delivered" &&
+                            order.status !== "cancelled" && (
+                              <>
+                                <DropdownMenuSeparator />
 
-                          <DropdownMenuItem>Cancel order</DropdownMenuItem>
+                                <DropdownMenuItem>
+                                  Cancel order
+                                </DropdownMenuItem>
+                              </>
+                            )}
                         </DropdownMenuContent>
                       </DropdownMenu>
                     </td>
@@ -188,6 +208,18 @@ const OrdersTable = ({ orders }: Props) => {
           onOpenChange={(open) => {
             if (!open) {
               setViewingOrder(null);
+            }
+          }}
+        />
+      )}
+
+      {advancingOrderStatus && (
+        <AdvanceStatusDialog
+          order={advancingOrderStatus}
+          open={!!advancingOrderStatus}
+          onOpenChange={(open) => {
+            if (!open) {
+              setAdvancingOrderStatus(null);
             }
           }}
         />
