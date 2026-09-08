@@ -148,7 +148,6 @@ export const cancel = async (
       cancelled_at = NOW(),
       updated_at = NOW()
     WHERE id = $1
-      AND status = 'pending'
     RETURNING *
     `,
     [orderId],

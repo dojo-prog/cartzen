@@ -17,3 +17,11 @@ export const advanceOrderStatus = async (
 
   return data.data.order;
 };
+
+export const adminCancelOrder = async (
+  orderId: string,
+): Promise<OrderWithItems> => {
+  const { data } = await api.patch(`/v1/admin/orders/${orderId}/cancel`);
+
+  return data.data.order;
+};

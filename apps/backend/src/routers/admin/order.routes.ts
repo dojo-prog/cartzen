@@ -9,6 +9,7 @@ import {
 } from "../../middlewares/rate.limit.middlewares";
 import {
   advanceOrderStatus,
+  cancelOrder,
   getOrders,
 } from "../../controllers/admin/order.controller";
 import validate from "../../middlewares/validation.middleware";
@@ -19,12 +20,18 @@ const router = express.Router();
 router.use(protectRoute, authorizeRoles(["admin"]));
 
 router.get("/", readLimiter, getOrders);
-router
-  .route("/:orderId/status")
-  .patch(
-    writeLimiter,
-    validate({ params: OrderIdParamsSchema }),
-    advanceOrderStatus,
-  );
+router.patch(
+  "/:orderId/status",
+  writeLimiter,
+  validate({ params: OrderIdParamsSchema }),
+  advanceOrderStatus,
+);
+
+router.patch(
+  "/:orderId/cancel",
+  writeLimiter,
+  validate({ params: OrderIdParamsSchema }),
+  cancelOrder,
+);
 
 export default router;

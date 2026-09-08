@@ -21,6 +21,7 @@ import ViewOrderDialog from "@/features/orders/components/ViewOrderDialog";
 import AdvanceStatusDialog from "@/features/orders/components/AdvanceStatusDialog";
 import { getStatusConfig } from "@/utils/getStatusConfig";
 import { cn } from "@/lib/utils";
+import AdminCancelOrderDialog from "@/features/orders/components/AdminCancelOrderDialog";
 
 type Props = {
   orders: OrderWithItems[];
@@ -30,6 +31,9 @@ const OrdersTable = ({ orders }: Props) => {
   const [viewingOrder, setViewingOrder] = useState<OrderWithItems | null>(null);
   const [advancingOrderStatus, setAdvancingOrderStatus] =
     useState<OrderWithItems | null>(null);
+  const [cancellingOrder, setCancellingOrder] = useState<OrderWithItems | null>(
+    null,
+  );
 
   return (
     <>
@@ -183,7 +187,9 @@ const OrdersTable = ({ orders }: Props) => {
                               <>
                                 <DropdownMenuSeparator />
 
-                                <DropdownMenuItem>
+                                <DropdownMenuItem
+                                  onClick={() => setCancellingOrder(order)}
+                                >
                                   Cancel order
                                 </DropdownMenuItem>
                               </>
@@ -220,6 +226,18 @@ const OrdersTable = ({ orders }: Props) => {
           onOpenChange={(open) => {
             if (!open) {
               setAdvancingOrderStatus(null);
+            }
+          }}
+        />
+      )}
+
+      {cancellingOrder && (
+        <AdminCancelOrderDialog
+          order={cancellingOrder}
+          open={!!cancellingOrder}
+          onOpenChange={(open) => {
+            if (!open) {
+              setCancellingOrder(null);
             }
           }}
         />

@@ -104,3 +104,44 @@ export const advanceOrderStatus = async (
     client.release();
   }
 };
+
+export const cancelOrder = async (
+  orderId: string,
+): Promise<OrderWithItems | void> => {
+  const order = await orderRepository.findAdminById(orderId);
+
+  if (!order) {
+    throw new AppError(404, "Order not found");
+  }
+
+  const status = order.status;
+
+  if (status === "cancelled") {
+    throw new AppError(400, "Order is already cancelled");
+  }
+
+  if (status === "delivered") {
+    throw new AppError(400, "Cannot cancel delivered orders");
+  }
+
+  const client = await pool.connect();
+
+  try {
+    await client.query("BEGIN");
+    const updated = await orderRepository.cancel(orderId, client);
+
+    const orderItems = await orderItemRepository.findByOrderId(orderId, client);
+
+    await client.query("COMMIT");
+
+    return {
+      ...updated,
+      items: orderItems,
+    };
+  } catch (error) {
+    await client.query("ROLLBACK");
+    throw error;
+  } finally {
+    client.release();
+  }
+};

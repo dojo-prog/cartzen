@@ -26,3 +26,13 @@ export const advanceOrderStatus: Controller = async (req, res, next) => {
     next(error);
   }
 };
+
+export const cancelOrder: Controller = async (req, res, next) => {
+  try {
+    const order = await orderService.cancelOrder(req.params.orderId as string);
+
+    res.status(200).json({ success: true, data: { order } });
+  } catch (error) {
+    next(error);
+  }
+};
