@@ -1,38 +1,18 @@
 import express from "express";
 import validate from "../middlewares/validation.middleware";
+import { CategoryQuerySchema, CategorySlugParamsSchema } from "@cartzen/shared";
 import {
-  CategoryIdParamsSchema,
-  CategoryQuerySchema,
-  CategorySlugParamsSchema,
-  CreateCategoryBodySchema,
-  UpdateCategoryBodySchema,
-} from "@cartzen/shared";
-import { authorizeRoles, protectRoute } from "../middlewares/auth.middleware";
-import {
-  createCategory,
-  deleteCategory,
   getAllCategories,
   getCategories,
   getCategoryBySlug,
-  updateCategory,
 } from "../controllers/category.controller";
-import {
-  readLimiter,
-  writeLimiter,
-} from "../middlewares/rate.limit.middlewares";
+import { readLimiter } from "../middlewares/rate.limit.middlewares";
 
 const router = express.Router();
 
 router
   .route("/")
-  .get(readLimiter, validate({ query: CategoryQuerySchema }), getCategories)
-  .post(
-    writeLimiter,
-    protectRoute,
-    authorizeRoles(["admin"]),
-    validate({ body: CreateCategoryBodySchema }),
-    createCategory,
-  );
+  .get(readLimiter, validate({ query: CategoryQuerySchema }), getCategories);
 
 router.get("/all", getAllCategories);
 
@@ -42,25 +22,5 @@ router.get(
   validate({ params: CategorySlugParamsSchema }),
   getCategoryBySlug,
 );
-
-router
-  .route("/:categoryId")
-  .patch(
-    writeLimiter,
-    protectRoute,
-    authorizeRoles(["admin"]),
-    validate({
-      params: CategoryIdParamsSchema,
-      body: UpdateCategoryBodySchema,
-    }),
-    updateCategory,
-  )
-  .delete(
-    writeLimiter,
-    protectRoute,
-    authorizeRoles(["admin"]),
-    validate({ params: CategoryIdParamsSchema }),
-    deleteCategory,
-  );
 
 export default router;
