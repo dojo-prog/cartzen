@@ -21,6 +21,7 @@ import paymentRouter from "./routers/payment.routes";
 import adminProductRouter from "./routers/admin/product.routes";
 import adminOrderRouter from "./routers/admin/order.routes";
 import adminCategoryRouter from "./routers/admin/category.routes";
+import adminSubcategoryRouter from "./routers/admin/subcategory.routes";
 
 const app = express();
 
@@ -56,6 +57,7 @@ app.use("/api/v1/", paymentRouter);
 app.use("/api/v1/admin/products", adminProductRouter);
 app.use("/api/v1/admin/orders", adminOrderRouter);
 app.use("/api/v1/admin/categories", adminCategoryRouter);
+app.use("/api/v1/admin/subcategories", adminSubcategoryRouter);
 
 // Error Handler
 app.use(errorMiddleware);
