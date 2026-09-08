@@ -37,6 +37,15 @@ export const createCategory = async (
 ): Promise<Category> => {
   const { payload } = params;
 
+  const existing = await categoryRepository.findByName(payload.name);
+
+  if (existing) {
+    throw new AppError(
+      400,
+      `A category named (${payload.name}) already exists`,
+    );
+  }
+
   const slug = generateSlug(payload.name);
 
   return await categoryRepository.add({ ...payload, slug });

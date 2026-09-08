@@ -54,6 +54,18 @@ export const findById = async (categoryId: string): Promise<Category> => {
   return rows[0];
 };
 
+export const findByName = async (name: string): Promise<Category> => {
+  const { rows } = await pool.query(
+    `
+    SELECT * FROM categories
+    WHERE LOWER(name) = LOWER($1)
+    `,
+    [name],
+  );
+
+  return rows[0];
+};
+
 export const findBySlug = async (categorySlug: string): Promise<Category> => {
   const { rows } = await pool.query(
     `
