@@ -2,6 +2,7 @@ import NotFound from "@/components/feedback/NotFound";
 import { useCurrentUser } from "@/features/auth/hooks/useCurrentUser";
 import AdminLayout from "@/layouts/AdminLayout";
 import StoreLayout from "@/layouts/StoreLayout";
+import AdminCategoriesPage from "@/pages/admin/AdminCategoriesPage";
 import AdminOrdersPage from "@/pages/admin/AdminOrdersPage";
 import AdminProductsPage from "@/pages/admin/AdminProductsPage";
 import AdminLoginPage from "@/pages/auth/admin/AdminLoginPage";
@@ -92,6 +93,7 @@ const App = () => {
         >
           <Route index element={<AdminProductsPage />} />
           <Route path="products" element={<AdminProductsPage />} />
+          <Route path="categories" element={<AdminCategoriesPage />} />
           <Route path="orders" element={<AdminOrdersPage />} />
         </Route>
 

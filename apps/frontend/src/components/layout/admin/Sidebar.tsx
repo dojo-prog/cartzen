@@ -7,6 +7,7 @@ import {
   ShoppingCart,
   PanelLeftClose,
   PanelLeftOpen,
+  ChartBarStacked,
 } from "lucide-react";
 
 import React from "react";
@@ -17,6 +18,11 @@ const sidebarTabs = [
     label: "Products",
     path: "/admin/products",
     Icon: Package,
+  },
+  {
+    label: "Categories",
+    path: "/admin/categories",
+    Icon: ChartBarStacked,
   },
   {
     label: "Orders",
