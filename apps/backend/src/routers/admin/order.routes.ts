@@ -11,12 +11,19 @@ import {
   advanceOrderStatus,
   getOrders,
 } from "../../controllers/admin/order.controller";
+import validate from "../../middlewares/validation.middleware";
+import { OrderIdParamsSchema } from "@cartzen/shared";
 
 const router = express.Router();
 
 router.use(protectRoute, authorizeRoles(["admin"]));
 
 router.get("/", readLimiter, getOrders);
-router.post("/:orderId/status", writeLimiter, advanceOrderStatus);
+router.post(
+  "/:orderId/status",
+  writeLimiter,
+  validate({ params: OrderIdParamsSchema }),
+  advanceOrderStatus,
+);
 
 export default router;
