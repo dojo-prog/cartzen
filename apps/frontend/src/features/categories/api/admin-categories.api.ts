@@ -18,7 +18,7 @@ export const getCategories = async (
 export const createCategory = async (
   body: CreateCategoryBody,
 ): Promise<Category> => {
-  const { data } = await api.post(`/v1/categories/admin`, body);
+  const { data } = await api.post(`/v1/admin/categories`, body);
 
   return data.data.category;
 };
@@ -27,13 +27,13 @@ export const updateCategory = async (
   categoryId: string,
   body: UpdateCategoryBody,
 ): Promise<Category> => {
-  const { data } = await api.patch(`/v1/categories/admin/${categoryId}`, body);
+  const { data } = await api.patch(`/v1/admin/categories/${categoryId}`, body);
 
   return data.data.category;
 };
 
 export const deleteCategory = async (categoryId: string): Promise<Category> => {
-  const { data } = await api.delete(`/v1/categories/admin/${categoryId}`);
+  const { data } = await api.delete(`/v1/admin/categories/${categoryId}`);
 
   return data.data.category;
 };
