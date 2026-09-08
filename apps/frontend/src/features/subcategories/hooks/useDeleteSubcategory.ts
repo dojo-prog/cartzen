@@ -2,22 +2,16 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { handleApiError } from "@/utils/handleApiError";
 
-import * as subcategoryApi from "../api/subcategory.api";
-
-type DeleteSubcategoryVariables = {
-  categoryId: string;
-  subcategoryId: string;
-};
+import * as subcategoryApi from "../api/admin-subcatgory.api";
 
 export const useDeleteSubcategory = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({ categoryId, subcategoryId }: DeleteSubcategoryVariables) =>
-      subcategoryApi.deleteSubcategory(categoryId, subcategoryId),
+    mutationFn: subcategoryApi.deleteSubcategory,
 
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["subcategories"] });
+      queryClient.invalidateQueries({ queryKey: ["admin-subcategories"] });
 
       toast.success("Deleted subcategory");
     },

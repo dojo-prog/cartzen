@@ -9,6 +9,33 @@ import buildInsertQueries from "../utils/query-builder/buildInsertQueries";
 import buildUpdateQueries from "../utils/query-builder/buildUpdateQueries";
 
 export const find = async (
+  filters: SubcategoryQuery,
+): Promise<{ subcategories: Subcategory[]; total: number }> => {
+  const { whereClause, orderByClause, offsetClause, limitClause, values } =
+    buildFilterQueries(filters, [], [], ["name"]);
+
+  const { rows } = await pool.query(
+    `
+    SELECT *,
+      COUNT(*) OVER()::INT AS total
+    FROM subcategories 
+    ${whereClause}
+    ORDER BY name ASC
+    ${limitClause}
+    ${offsetClause}
+    `,
+    values,
+  );
+
+  const subcategories = rows.map(({ total, ...subcategory }) => subcategory);
+
+  return {
+    subcategories,
+    total: rows[0]?.total ?? 0,
+  };
+};
+
+export const findByCategory = async (
   categoryId: string,
   filters: SubcategoryQuery,
 ): Promise<{ subcategories: Subcategory[]; total: number }> => {
@@ -48,17 +75,13 @@ export const findAll = async (): Promise<Partial<Subcategory>[]> => {
   return rows;
 };
 
-export const findById = async (
-  categoryId: string,
-  subcategoryId: string,
-): Promise<Subcategory> => {
+export const findById = async (subcategoryId: string): Promise<Subcategory> => {
   const { rows } = await pool.query(
     `
     SELECT * FROM subcategories
     WHERE id = $1
-      AND category_id = $2
     `,
-    [subcategoryId, categoryId],
+    [subcategoryId],
   );
 
   return rows[0];
@@ -99,9 +122,11 @@ export const findBySlug = async (
   return rows[0];
 };
 
-export const add = async (
-  payload: CreateSubcategoryBody & { category_id: string; slug: string },
-): Promise<Subcategory> => {
+export const add = async (payload: {
+  category_id: string;
+  name: string;
+  slug: string;
+}): Promise<Subcategory> => {
   const { columnsStr, placeholdersStr, values } = buildInsertQueries(payload);
 
   const { rows } = await pool.query(
@@ -139,16 +164,12 @@ export const update = async (
   return rows[0];
 };
 
-export const remove = async (
-  categoryId: string,
-  subcategoryId: string,
-): Promise<void> => {
+export const remove = async (subcategoryId: string): Promise<void> => {
   await pool.query(
     `
     DELETE FROM subcategories
     WHERE id = $1
-      AND category_id = $2
     `,
-    [subcategoryId, categoryId],
+    [subcategoryId],
   );
 };

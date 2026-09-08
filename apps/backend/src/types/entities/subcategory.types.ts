@@ -25,13 +25,11 @@ export interface CreateSubcategoryParams {
 }
 
 export interface UpdateSubcategoryParams {
-  categoryId: string;
   subcategoryId: string;
   payload: BaseSubcategoryPayload;
 }
 
 export interface DeleteSubcategoryParams {
-  categoryId: string;
   subcategoryId: string;
 }
 

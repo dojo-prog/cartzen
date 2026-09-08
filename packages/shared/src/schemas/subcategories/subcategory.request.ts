@@ -34,13 +34,15 @@ export const SubcategoryQuerySchema = z.object({
 
 export const SubcategoryBaseBodySchema = z.object({
   name: SubcategoryNameSchema,
+  categoryId: z
+    .string()
+    .min(1, { message: "Category is required" })
+    .uuid({ message: "Invalid UUID format" }),
 });
 
 export const CreateSubcategoryBodySchema = SubcategoryBaseBodySchema;
 
-export const UpdateSubcategoryBodySchema = SubcategoryBaseBodySchema.extend({
-  categoryId: UUIDSchema,
-});
+export const UpdateSubcategoryBodySchema = SubcategoryBaseBodySchema;
 
 // =======================================
 // TYPES

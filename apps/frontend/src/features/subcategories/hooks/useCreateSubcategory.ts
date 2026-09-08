@@ -1,24 +1,17 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import type { CreateSubcategoryBody } from "@cartzen/shared";
 import { toast } from "sonner";
 import { handleApiError } from "@/utils/handleApiError";
 
-import * as subcategoryApi from "../api/subcategory.api";
-
-type CreateSubcategoryVariables = {
-  categoryId: string;
-  body: CreateSubcategoryBody;
-};
+import * as subcategoryApi from "../api/admin-subcatgory.api";
 
 export const useCreateSubcategory = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({ categoryId, body }: CreateSubcategoryVariables) =>
-      subcategoryApi.createSubcategory(categoryId, body),
+    mutationFn: subcategoryApi.createSubcategory,
 
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["subcategories"] });
+      queryClient.invalidateQueries({ queryKey: ["admin-subcategories"] });
 
       toast.success("Created new subcategory");
     },

@@ -13,12 +13,9 @@ import {
 } from "@cartzen/shared";
 import { authorizeRoles, protectRoute } from "../middlewares/auth.middleware";
 import {
-  createSubcategory,
-  deleteSubcategory,
   getAllSubcategories,
   getSubcategories,
   getSubcategoryBySlug,
-  updateSubcategory,
 } from "../controllers/subcategory.controller";
 import {
   readLimiter,
@@ -38,18 +35,6 @@ router.route("/:categorySlug/subcategories").get(
   getSubcategories,
 );
 
-router.post(
-  "/:categoryId/subcategories",
-  writeLimiter,
-  protectRoute,
-  authorizeRoles(["admin"]),
-  validate({
-    params: CategoryIdParamsSchema,
-    body: CreateSubcategoryBodySchema,
-  }),
-  createSubcategory,
-);
-
 router.get(
   "/:categorySlug/subcategories/:subcategorySlug",
   readLimiter,
@@ -58,27 +43,5 @@ router.get(
   }),
   getSubcategoryBySlug,
 );
-
-router
-  .route("/:categoryId/subcategories/:subcategoryId")
-  .patch(
-    writeLimiter,
-    protectRoute,
-    authorizeRoles(["admin"]),
-    validate({
-      params: CategoryIdParamsSchema.merge(SubcategoryIdParamsSchema),
-      body: UpdateSubcategoryBodySchema,
-    }),
-    updateSubcategory,
-  )
-  .delete(
-    writeLimiter,
-    protectRoute,
-    authorizeRoles(["admin"]),
-    validate({
-      params: CategoryIdParamsSchema.merge(SubcategoryIdParamsSchema),
-    }),
-    deleteSubcategory,
-  );
 
 export default router;
