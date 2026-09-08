@@ -19,6 +19,10 @@ const refreshApi = axios.create({
   timeout: 10_000,
 });
 
+export const refreshAccessToken = async () => {
+  await refreshApi.post("/v1/auth/refresh");
+};
+
 api.interceptors.response.use(
   (response) => response,
 
@@ -32,9 +36,13 @@ api.interceptors.response.use(
     if (error.response?.status === 401 && config && !config._retry) {
       config._retry = true;
 
-      await refreshAccessToken();
+      try {
+        await refreshAccessToken();
 
-      return api(config);
+        return api(config);
+      } catch {
+        // Refresh failed.
+      }
     }
 
     const response = error.response;
@@ -49,9 +57,5 @@ api.interceptors.response.use(
     );
   },
 );
-
-export const refreshAccessToken = async () => {
-  await refreshApi.post("/v1/auth/refresh");
-};
 
 export { api };

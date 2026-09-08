@@ -83,7 +83,7 @@ export const login = async (params: LoginParams): Promise<LoginResult> => {
 export const refreshAccessToken = async (
   params: RefreshAccessTokenParams,
 ): Promise<string> => {
-  const { refreshToken } = params;
+  const refreshToken = params?.refreshToken;
 
   if (!refreshToken) {
     throw new AppError(401, "Unauthorized - Session Expired");
