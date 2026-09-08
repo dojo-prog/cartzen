@@ -9,9 +9,9 @@ import * as subcategoryService from "../../services/admin/subcategory.service";
 
 export const getSubcategories: Controller = async (req, res, next) => {
   try {
-    const data = await subcategoryService.getSubcategories(
-      SubcategoryQuerySchema.parse(req.query),
-    );
+    const data = await subcategoryService.getSubcategories({
+      filters: SubcategoryQuerySchema.parse(req.query),
+    });
 
     res.status(200).json({ success: true, data });
   } catch (error) {

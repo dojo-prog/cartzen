@@ -6,7 +6,6 @@ import { GetResult, UpdateResult } from "./common";
 // =======================================
 
 export interface GetSubcategoriesParams {
-  categorySlug: string;
   filters: SubcategoryQuery;
 }
 
