@@ -36,6 +36,7 @@ export const findAll = async (): Promise<Category[]> => {
     `
     SELECT id, name, slug 
     FROM categories
+    ORDER BY name ASC
     `,
   );
 
