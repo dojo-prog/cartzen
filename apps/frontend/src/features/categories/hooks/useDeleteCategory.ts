@@ -11,7 +11,7 @@ export const useDeleteCategory = () => {
     mutationFn: categoryApi.deleteCategory,
 
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["categories"] });
+      queryClient.invalidateQueries({ queryKey: ["admin-categories"] });
 
       toast.success("Category deleted");
     },

@@ -12,7 +12,7 @@ export const useCreateCategory = () => {
 
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["categories"],
+        queryKey: ["admin-categories"],
       });
 
       toast.success("Category created");
