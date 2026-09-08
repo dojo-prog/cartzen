@@ -1,24 +1,33 @@
 import pool from "../database/db";
 import {
-  CreateSubcategoryBody,
   Subcategory,
   SubcategoryQuery,
+  SubcategoryWithRelations,
 } from "@cartzen/shared";
 import buildFilterQueries from "../utils/query-builder/buildFilterQueries";
 import buildInsertQueries from "../utils/query-builder/buildInsertQueries";
 import buildUpdateQueries from "../utils/query-builder/buildUpdateQueries";
+import {
+  SUBCATEGORY_JOINS,
+  SUBCATEGORY_RELATIONS_PROJECTION,
+} from "../database/queries/subcategories";
 
 export const find = async (
   filters: SubcategoryQuery,
-): Promise<{ subcategories: Subcategory[]; total: number }> => {
-  const { whereClause, orderByClause, offsetClause, limitClause, values } =
-    buildFilterQueries(filters, [], [], ["name"]);
+): Promise<{ subcategories: SubcategoryWithRelations[]; total: number }> => {
+  const { whereClause, offsetClause, limitClause, values } = buildFilterQueries(
+    filters,
+    [],
+    [],
+    ["sc.name"],
+  );
 
   const { rows } = await pool.query(
     `
-    SELECT *,
+    SELECT ${SUBCATEGORY_RELATIONS_PROJECTION}, 
       COUNT(*) OVER()::INT AS total
-    FROM subcategories 
+    FROM subcategories sc
+    ${SUBCATEGORY_JOINS}
     ${whereClause}
     ORDER BY name ASC
     ${limitClause}
@@ -87,6 +96,22 @@ export const findById = async (subcategoryId: string): Promise<Subcategory> => {
   return rows[0];
 };
 
+export const findWithRelationsById = async (
+  subcategoryId: string,
+): Promise<SubcategoryWithRelations> => {
+  const { rows } = await pool.query(
+    `
+    SELECT ${SUBCATEGORY_RELATIONS_PROJECTION}
+    FROM subcategories sc
+    ${SUBCATEGORY_JOINS}
+    WHERE id = $1
+    `,
+    [subcategoryId],
+  );
+
+  return rows[0];
+};
+
 export const findByName = async (
   categoryId: string,
   name: string,
@@ -126,42 +151,43 @@ export const add = async (payload: {
   category_id: string;
   name: string;
   slug: string;
-}): Promise<Subcategory> => {
+}): Promise<SubcategoryWithRelations> => {
   const { columnsStr, placeholdersStr, values } = buildInsertQueries(payload);
 
   const { rows } = await pool.query(
     `
     INSERT INTO subcategories (${columnsStr})
     VALUES (${placeholdersStr})
-    RETURNING *
+    RETURNING id
     `,
     values,
   );
 
-  return rows[0];
+  const id = rows[0].id;
+
+  return findWithRelationsById(id);
 };
 
 export const update = async (
   categoryId: string,
   subcategoryId: string,
   changes: Partial<Subcategory>,
-): Promise<Subcategory> => {
+): Promise<SubcategoryWithRelations> => {
   const { setClause, values } = buildUpdateQueries(changes);
 
   values.push(subcategoryId, categoryId);
 
-  const { rows } = await pool.query(
+  await pool.query(
     `
     UPDATE subcategories
     ${setClause}
     WHERE id = $${values.length - 1}
       AND category_id = $${values.length}
-    RETURNING *
     `,
     values,
   );
 
-  return rows[0];
+  return findWithRelationsById(subcategoryId);
 };
 
 export const remove = async (subcategoryId: string): Promise<void> => {

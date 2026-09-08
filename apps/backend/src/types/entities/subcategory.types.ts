@@ -1,4 +1,8 @@
-import { Subcategory, SubcategoryQuery } from "@cartzen/shared";
+import {
+  Subcategory,
+  SubcategoryQuery,
+  SubcategoryWithRelations,
+} from "@cartzen/shared";
 import { GetResult, UpdateResult } from "./common";
 
 // =======================================
@@ -46,6 +50,12 @@ export interface CreateSubcategoryData {
 // RESULT
 // =======================================
 
-export type GetSubcategoriesResult = GetResult<"subcategories", Subcategory>;
+export type GetSubcategoriesResult = GetResult<
+  "subcategories",
+  SubcategoryWithRelations
+>;
 
-export type UpdateSubcategoryResult = UpdateResult<"subcategory", Subcategory>;
+export type UpdateSubcategoryResult = UpdateResult<
+  "subcategory",
+  SubcategoryWithRelations
+>;

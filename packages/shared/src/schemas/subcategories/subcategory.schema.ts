@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { IsoDatetimeSchema, SlugSchema, UUIDSchema } from "../common";
+import { CategoryNameSchema } from "../categories";
 
 // =======================================
 // REUSABLE FIELDS
@@ -23,8 +24,21 @@ const SubcategoryEntitySchema = z.object({
   created_at: IsoDatetimeSchema,
 });
 
+const SubcategoryWithRelationsSchmea = SubcategoryEntitySchema.omit({
+  category_id: true,
+}).extend({
+  category: z.object({
+    id: UUIDSchema,
+    name: CategoryNameSchema,
+  }),
+});
+
 // =======================================
 // TYPES
 // =======================================
 
 export type Subcategory = z.infer<typeof SubcategoryEntitySchema>;
+
+export type SubcategoryWithRelations = z.infer<
+  typeof SubcategoryWithRelationsSchmea
+>;

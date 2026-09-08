@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { handleApiError } from "@/utils/handleApiError";
 
-import * as subcategoryApi from "../api/admin-subcatgory.api";
+import * as subcategoryApi from "../api/admin-subcategory.api";
 
 export const useCreateSubcategory = () => {
   const queryClient = useQueryClient();

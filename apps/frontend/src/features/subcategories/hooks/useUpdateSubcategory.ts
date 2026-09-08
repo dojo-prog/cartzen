@@ -3,7 +3,7 @@ import type { UpdateSubcategoryBody } from "@cartzen/shared";
 import { toast } from "sonner";
 import { handleApiError } from "@/utils/handleApiError";
 
-import * as subcategoryApi from "../api/admin-subcatgory.api";
+import * as subcategoryApi from "../api/admin-subcategory.api";
 
 type UpdateSubcategoryVariables = {
   subcategoryId: string;

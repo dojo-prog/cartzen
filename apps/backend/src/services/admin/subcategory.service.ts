@@ -1,4 +1,4 @@
-import { Subcategory } from "@cartzen/shared";
+import { Subcategory, SubcategoryWithRelations } from "@cartzen/shared";
 import {
   CreateSubcategoryData,
   CreateSubcategoryParams,
@@ -36,7 +36,7 @@ export const getSubcategories = async (
 
 export const createSubcategory = async (
   params: CreateSubcategoryParams,
-): Promise<Subcategory> => {
+): Promise<SubcategoryWithRelations> => {
   const { payload } = params;
 
   const { categoryId, name } = payload;
