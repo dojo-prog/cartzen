@@ -7,8 +7,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import AddSubcategoryButton from "@/features/subcategories/components/AddSubcategoryButton";
 import type { SubcategoryWithRelations } from "@cartzen/shared";
-import { Pencil, Plus, Trash2 } from "lucide-react";
+import { Pencil, Trash2 } from "lucide-react";
 
 type Props = {
   subcategories: SubcategoryWithRelations[];
@@ -80,10 +81,7 @@ const SubcategoryTable = ({ subcategories }: Props) => {
       </Table>
 
       <div className="border-t p-3">
-        <Button variant="outline" size="sm">
-          <Plus className="mr-2 size-4" />
-          Add Subcategory
-        </Button>
+        <AddSubcategoryButton />
       </div>
     </div>
   );
