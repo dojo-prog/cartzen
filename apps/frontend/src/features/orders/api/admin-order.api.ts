@@ -13,7 +13,7 @@ export const getAdminOrders = async (
 export const advanceOrderStatus = async (
   orderId: string,
 ): Promise<OrderWithItems> => {
-  const { data } = await api.post(`/v1/admin/orders/${orderId}/status`);
+  const { data } = await api.patch(`/v1/admin/orders/${orderId}/status`);
 
   return data.data.order;
 };

@@ -19,11 +19,12 @@ const router = express.Router();
 router.use(protectRoute, authorizeRoles(["admin"]));
 
 router.get("/", readLimiter, getOrders);
-router.post(
-  "/:orderId/status",
-  writeLimiter,
-  validate({ params: OrderIdParamsSchema }),
-  advanceOrderStatus,
-);
+router
+  .route("/:orderId/status")
+  .patch(
+    writeLimiter,
+    validate({ params: OrderIdParamsSchema }),
+    advanceOrderStatus,
+  );
 
 export default router;
