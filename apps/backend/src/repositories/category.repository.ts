@@ -16,7 +16,7 @@ export const find = async (
       COUNT(*) OVER()::INT AS total
     FROM categories 
     ${whereClause}
-    ORDER BY name DESC
+    ORDER BY name ASC
     ${limitClause}
     ${offsetClause}
     `,
