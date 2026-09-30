@@ -4,7 +4,6 @@ import type {
   Shipping,
   Store,
   UpdateShippingBody,
-  UserAddress,
 } from "@cartzen/shared";
 
 export const getShippingDetails = async (): Promise<Shipping> => {
