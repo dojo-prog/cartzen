@@ -5,7 +5,7 @@ import Sidebar from "@/components/layout/admin/Sidebar";
 import Navbar from "@/components/layout/admin/Navbar";
 
 const AdminLayout = () => {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
 
   return (
     <div className="flex min-h-screen w-full bg-muted/20">
