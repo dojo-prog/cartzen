@@ -23,6 +23,8 @@ import adminOrderRouter from "./routers/admin/order.routes";
 import adminCategoryRouter from "./routers/admin/category.routes";
 import adminSubcategoryRouter from "./routers/admin/subcategory.routes";
 
+import healtRouter from "./routers/health.routes";
+
 const app = express();
 
 // Cors Config
@@ -58,6 +60,9 @@ app.use("/api/v1/admin/products", adminProductRouter);
 app.use("/api/v1/admin/orders", adminOrderRouter);
 app.use("/api/v1/admin/categories", adminCategoryRouter);
 app.use("/api/v1/admin/subcategories", adminSubcategoryRouter);
+
+// Health Router
+app.use("/health", healtRouter);
 
 // Error Handler
 app.use(errorMiddleware);
