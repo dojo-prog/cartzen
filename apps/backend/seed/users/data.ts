@@ -1,4 +1,4 @@
-import type { UserRole } from "../../src/schemas/users";
+import type { UserRole } from "@cartzen/shared";
 
 interface MockUser {
   username: string;
