@@ -41,13 +41,17 @@ const getReqEnvNum = (name: string, defVal?: number) => {
 const ENV = {
   PORT: getReqEnvNum("PORT", 3000),
   NODE_ENV: getReqEnvStr("NODE_ENV"),
-  BASE_URL: getReqEnvStr("BASE_URL"),
 
-  DATABASE_HOST: getReqEnvStr("DATABASE_HOST"),
-  DATABASE_PORT: getReqEnvNum("DATABASE_PORT", 5432),
-  DATABASE_NAME: getReqEnvStr("DATABASE_NAME"),
-  DATABASE_USER: getReqEnvStr("DATABASE_USER"),
-  DATABASE_PASSWORD: getReqEnvStr("DATABASE_PASSWORD"),
+  CLIENT_URL: getReqEnvStr("CLIENT_URL"),
+  DEV_CLIENT_URL: getReqEnvStr("CLIENT_URL"),
+
+  // DATABASE_HOST: getReqEnvStr("DATABASE_HOST"),
+  // DATABASE_PORT: getReqEnvNum("DATABASE_PORT", 5432),
+  // DATABASE_NAME: getReqEnvStr("DATABASE_NAME"),
+  // DATABASE_USER: getReqEnvStr("DATABASE_USER"),
+  // DATABASE_PASSWORD: getReqEnvStr("DATABASE_PASSWORD"),
+
+  DATABASE_URL: getReqEnvStr("DATABASE_URL"),
 
   ACCESS_TOKEN_SECRET: getReqEnvStr("ACCESS_TOKEN_SECRET"),
   REFRESH_TOKEN_SECRET: getReqEnvStr("REFRESH_TOKEN_SECRET"),
@@ -55,8 +59,6 @@ const ENV = {
   CLOUDINARY_CLOUD_NAME: getReqEnvStr("CLOUDINARY_CLOUD_NAME"),
   CLOUDINARY_API_KEY: getReqEnvStr("CLOUDINARY_API_KEY"),
   CLOUDINARY_API_SECRET: getReqEnvStr("CLOUDINARY_API_SECRET"),
-
-  CLIENT_URL: getReqEnvStr("CLIENT_URL"),
 } as const;
 
 export default ENV;
