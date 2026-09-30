@@ -1,3 +1,4 @@
+import ScrollToTop from "@/components/common/ScrollToTop";
 import NotFound from "@/components/feedback/NotFound";
 import { useCurrentUser } from "@/features/auth/hooks/useCurrentUser";
 import AdminLayout from "@/layouts/AdminLayout";
@@ -26,6 +27,8 @@ const App = () => {
 
   return (
     <>
+      <ScrollToTop />
+
       <Routes>
         {/* Public */}
         <Route path="/" element={<StoreLayout />}>
