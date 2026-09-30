@@ -7,7 +7,7 @@ import { useAllCartItems } from "@/features/carts/hooks/useAllCartItems";
 
 const CartPage = () => {
   const { data: cartItems } = useAllCartItems();
-  const { data: user, isLoading: isUserLoading } = useCurrentUser();
+  const { data: user } = useCurrentUser();
 
   const subtotal = cartItems?.reduce(
     (total, item) => total + (item.product.price_cents / 100) * item.quantity,
@@ -24,7 +24,7 @@ const CartPage = () => {
         </p>
       </div>
 
-      {isUserLoading ? null : !user ? (
+      {!user ? (
         <RequireAuth />
       ) : cartItems?.length === 0 ? (
         <EmptyCart />
