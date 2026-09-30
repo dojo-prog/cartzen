@@ -28,9 +28,18 @@ import healtRouter from "./routers/health.routes";
 const app = express();
 
 // Cors Config
+
+const allowedOrigins = [ENV.CLIENT_URL, ENV.DEV_CLIENT_URL];
+
 app.use(
   cors({
-    origin: ENV.CLIENT_URL,
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   }),
 );
