@@ -59,7 +59,7 @@ const ErrorBoundaryUI = ({ error, onRetry }: ErrorBoundaryUIProps) => {
             </Button>
 
             <Button size="lg" className="sm:min-w-36">
-              <Link to="/">
+              <Link to="/" className="flex items-center">
                 <Home className="mr-2 size-4" />
                 Back to Home
               </Link>
