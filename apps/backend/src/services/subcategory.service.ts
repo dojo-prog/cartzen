@@ -12,13 +12,7 @@ import {
 export const getSubcategories = async (
   params: GetSubcategoriesParams,
 ): Promise<GetSubcategoriesResult> => {
-  const { categorySlug, filters } = params;
-
-  const category = await categoryRepository.findBySlug(categorySlug);
-
-  if (!category) {
-    throw new AppError(404, "Category not found");
-  }
+  const { filters } = params;
 
   const { subcategories, total } = await subcategoryRepository.find(filters);
 

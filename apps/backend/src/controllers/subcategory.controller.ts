@@ -1,11 +1,10 @@
 import { Controller } from "../types/handlers";
 import * as subcategoryService from "../services/subcategory.service";
-import { SubcategoryQuerySchema, UpdateSubcategoryBody } from "@cartzen/shared";
+import { SubcategoryQuerySchema } from "@cartzen/shared";
 
 export const getSubcategories: Controller = async (req, res, next) => {
   try {
     const data = await subcategoryService.getSubcategories({
-      categorySlug: req.params.categorySlug as string,
       filters: SubcategoryQuerySchema.parse(req.query),
     });
 
